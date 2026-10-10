@@ -11,6 +11,7 @@ use HydraLabs\X402\Commands\RoutesCommand;
 use HydraLabs\X402\Commands\TestCommand;
 use HydraLabs\X402\Config\X402Config;
 use HydraLabs\X402\Core\Facilitator\Facilitator;
+use HydraLabs\X402\Core\Facilitator\FacilitatorAuth;
 use HydraLabs\X402\Core\Protocol\CodecRegistry;
 use HydraLabs\X402\Core\Replay\ReplayGuard;
 use HydraLabs\X402\Core\Replay\ReplayStore;
@@ -111,6 +112,8 @@ final class X402ServiceProvider extends PackageServiceProvider
             /** @var array<string, string> $headers */
             $headers = is_array($facilitator['headers'] ?? null) ? $facilitator['headers'] : [];
 
+            $auth = $facilitator['auth'] ?? null;
+
             return new HttpFacilitator(
                 http: $this->app->make(HttpFactory::class),
                 codecs: $this->app->make(CodecRegistry::class),
@@ -122,6 +125,11 @@ final class X402ServiceProvider extends PackageServiceProvider
                 settleRetries: (int) ($facilitator['settle_retries'] ?? 0),
                 retryDelay: (int) ($facilitator['retry_delay'] ?? 250),
                 verifySsl: (bool) ($facilitator['verify_ssl'] ?? true),
+                auth: match (true) {
+                    $auth instanceof FacilitatorAuth => $auth,
+                    is_string($auth) && $auth !== '' => $this->app->make($auth),
+                    default => null,
+                },
             );
         });
 

@@ -174,6 +174,13 @@ The reference default per-request timeout is 90 seconds; this package defaults
 to 30 and caps at a configurable maximum, because a Laravel request holding a
 worker for 90 seconds is rarely what an operator wants. Both are configurable.
 
+The reference client takes `createAuthHeaders()` keyed by path, because a
+facilitator may sign each request rather than issuing a long-lived token (the
+Coinbase CDP facilitator signs over the request path). This package mirrors that
+with the `FacilitatorAuth` contract, whose `headers(string $operation)` receives
+`verify`, `settle` or `supported`; static headers remain available for
+token-based facilitators.
+
 The facilitator may return an `EXTENSION-RESPONSES` header. It is a
 **server-internal sidechannel** and MUST NOT be forwarded to buyers — the
 package strips `extensionResponses` before encoding `PAYMENT-RESPONSE`.

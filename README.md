@@ -373,6 +373,27 @@ X402_FACILITATOR_TIMEOUT=30
 | Coinbase CDP | managed mainnet with KYT/OFAC screening |
 | Self-hosted | full control; any URL exposing `/verify`, `/settle` and `/supported` |
 
+Some facilitators sign each request rather than taking a long-lived token — the Coinbase CDP facilitator is one. Point
+`x402.facilitator.auth` at a class that builds the headers per call:
+
+```php
+use HydraLabs\X402\Core\Facilitator\FacilitatorAuth;
+
+final class CdpAuth implements FacilitatorAuth
+{
+    public function headers(string $operation): array
+    {
+        // $operation is 'verify', 'settle' or 'supported'.
+        return ['Authorization' => 'Bearer '.$this->jwtFor('/platform/v2/x402/'.$operation)];
+    }
+}
+```
+
+```env
+X402_FACILITATOR_URL=https://api.cdp.coinbase.com/platform/v2/x402
+X402_FACILITATOR_AUTH=App\Services\CdpAuth
+```
+
 Anything implementing the `Facilitator` contract works, including a local one:
 
 ```php
@@ -615,6 +636,7 @@ Every setting is environment-driven. The defaults are safe.
 | `X402_ADDITIONAL_NETWORKS` | — | comma-separated extra networks to accept |
 | `X402_FACILITATOR_URL` | `https://x402.org/facilitator` | facilitator base URL |
 | `X402_FACILITATOR_TOKEN` | — | bearer token for the facilitator |
+| `X402_FACILITATOR_AUTH` | — | class building signed auth headers per call |
 | `X402_FACILITATOR_TIMEOUT` | `30` | per-request timeout, seconds |
 | `X402_FACILITATOR_RETRIES` | `2` | retries for verify and supported, connection failures only |
 | `X402_FACILITATOR_SETTLE_RETRIES` | `0` | retries for settle; leave at 0 |

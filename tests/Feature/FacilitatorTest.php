@@ -317,3 +317,54 @@ it('returns nothing and records the failure when a deferred settlement cannot re
         ->and($payment->failure_reason)->toBe('facilitator_unavailable')
         ->and($payment->meta['stage'])->toBe('settle_after_response');
 });
+
+it('builds auth headers per call for a facilitator that signs each request', function (): void {
+    config()->set('x402.facilitator.auth', new class implements HydraLabs\X402\Core\Facilitator\FacilitatorAuth
+    {
+        public function headers(string $operation): array
+        {
+            return ['X-Signed-For' => $operation];
+        }
+    });
+
+    Http::fake([TestCase::FACILITATOR.'/*' => Http::response(['isValid' => true, 'success' => true, 'transaction' => '0x1', 'network' => 'eip155:84532'])]);
+
+    $requirements = facilitatorRequirements();
+    $resource = new ResourceInfo('https://api.test/x');
+
+    callFacilitator()->verify(samplePayload(), $requirements, $resource);
+    callFacilitator()->settle(samplePayload(), $requirements, $resource);
+
+    Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Signed-For', 'verify'));
+    Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Signed-For', 'settle'));
+});
+
+it('resolves a facilitator auth class from the container', function (): void {
+    config()->set('x402.facilitator.auth', StaticFacilitatorAuth::class);
+
+    Http::fake([TestCase::FACILITATOR.'/supported' => Http::response(['kinds' => []])]);
+
+    callFacilitator()->supported();
+
+    Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-From-Container', 'supported'));
+});
+
+it('sends static headers and signed headers together', function (): void {
+    config()->set('x402.facilitator.headers', ['X-Static' => 'yes']);
+    config()->set('x402.facilitator.auth', StaticFacilitatorAuth::class);
+
+    Http::fake([TestCase::FACILITATOR.'/supported' => Http::response(['kinds' => []])]);
+
+    callFacilitator()->supported();
+
+    Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Static', 'yes')
+        && $request->hasHeader('X-From-Container', 'supported'));
+});
+
+final class StaticFacilitatorAuth implements HydraLabs\X402\Core\Facilitator\FacilitatorAuth
+{
+    public function headers(string $operation): array
+    {
+        return ['X-From-Container' => $operation];
+    }
+}

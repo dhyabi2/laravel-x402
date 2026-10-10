@@ -111,6 +111,14 @@ return [
                 : null,
         ]),
 
+        /*
+        | Facilitators that sign each request rather than taking a long-lived
+        | token — the Coinbase CDP facilitator among them — need headers built
+        | per call. Point this at a class implementing
+        | HydraLabs\X402\Core\Facilitator\FacilitatorAuth.
+        */
+        'auth' => env('X402_FACILITATOR_AUTH'),
+
         'timeout' => (int) env('X402_FACILITATOR_TIMEOUT', 30),
 
         'connect_timeout' => (int) env('X402_FACILITATOR_CONNECT_TIMEOUT', 5),

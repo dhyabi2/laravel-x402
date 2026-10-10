@@ -24,7 +24,8 @@ Initial release. Implements x402 protocol version 2 and reads version 1.
 - Versioned protocol codecs for v2 (`PAYMENT-REQUIRED`, `PAYMENT-SIGNATURE`, `PAYMENT-RESPONSE`)
   and read support for v1 (`X-PAYMENT`, `X-PAYMENT-RESPONSE`)
 - `HttpFacilitator` for the x402 Foundation, Coinbase CDP and self-hosted facilitators,
-  with typed exceptions and connection-only retries
+  with typed exceptions, connection-only retries, static headers and a
+  `FacilitatorAuth` contract for facilitators that sign each request
 - `FakeFacilitator` plus `X402::fake()` and the `MakesX402Payments` test trait
 - Replay protection with atomic cache claims released on failure
 - Bypass rules: authenticated users, IP and CIDR allowlists, API keys and closures

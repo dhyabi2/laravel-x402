@@ -8,6 +8,7 @@ use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorConnectionException;
 use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorResponseException;
 use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorTimeoutException;
 use HydraLabs\X402\Core\Facilitator\Facilitator;
+use HydraLabs\X402\Core\Facilitator\FacilitatorAuth;
 use HydraLabs\X402\Core\Messages\PaymentPayload;
 use HydraLabs\X402\Core\Messages\PaymentRequirements;
 use HydraLabs\X402\Core\Messages\ResourceInfo;
@@ -31,6 +32,9 @@ use Throwable;
  * Retries cover connection failures only. A timed-out `/settle` is an
  * indeterminate outcome — the payment may have gone through — so it is never
  * retried unless an operator explicitly opts in.
+ *
+ * Static headers cover a facilitator with a long-lived token; a facilitator
+ * that signs each request takes a {@see FacilitatorAuth} instead.
  */
 final class HttpFacilitator implements Facilitator
 {
@@ -48,6 +52,7 @@ final class HttpFacilitator implements Facilitator
         private readonly int $settleRetries = 0,
         private readonly int $retryDelay = 250,
         private readonly bool $verifySsl = true,
+        private readonly ?FacilitatorAuth $auth = null,
     ) {}
 
     public function verify(PaymentPayload $payload, PaymentRequirements $requirements, ResourceInfo $resource): VerifyResponse
@@ -100,7 +105,7 @@ final class HttpFacilitator implements Facilitator
         $request = $this->http
             ->asJson()
             ->acceptJson()
-            ->withHeaders($this->headers)
+            ->withHeaders(array_merge($this->headers, $this->auth?->headers($operation) ?? []))
             ->timeout(max(1, $this->timeout))
             ->connectTimeout(max(1, $this->connectTimeout))
             ->withOptions(['verify' => $this->verifySsl]);
