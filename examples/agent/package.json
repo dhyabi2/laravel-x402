@@ -1,0 +1,19 @@
+{
+  "name": "laravel-x402-example-agent",
+  "private": true,
+  "type": "module",
+  "description": "Pays a laravel-x402 protected endpoint on Base Sepolia using the official x402 client.",
+  "scripts": {
+    "start": "tsx --env-file=.env pay.ts"
+  },
+  "dependencies": {
+    "@x402/evm": "^2.28.0",
+    "@x402/fetch": "^2.28.0",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.7.0"
+  }
+}

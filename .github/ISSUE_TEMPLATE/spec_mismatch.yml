@@ -1,0 +1,46 @@
+name: Specification mismatch
+description: The package does not match the x402 specification
+labels: [spec]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The specification wins over anything in this package's docs. Please link
+        the exact document and section, so it can be checked rather than argued.
+
+        Deliberate differences are recorded in
+        [docs/SPEC_NOTES.md](../blob/main/docs/SPEC_NOTES.md) — please check
+        there first, in case the behaviour is intentional.
+
+  - type: input
+    id: document
+    attributes:
+      label: Specification document and section
+      placeholder: specs/transports-v2/http.md — Payment Required Signaling
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the specification requires
+      description: Quote it, and link the commit or file you read.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What this package does
+      description: A decoded header, a request body, or a failing assertion.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: protocol-version
+    attributes:
+      label: Protocol version
+      placeholder: "2"
+    validations:
+      required: false

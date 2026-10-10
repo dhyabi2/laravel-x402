@@ -7,6 +7,12 @@ parameters:
         - src
         - database
 
+    # A trait written for other people's test suites is never used inside the
+    # package, so PHPStan cannot analyse it. Its logic lives in the analysed
+    # PaymentBuilder; the trait is delegation only.
+    excludePaths:
+        - src/Testing/MakesX402Payments.php
+
     tmpDir: build/phpstan
 
     treatPhpDocTypesAsCertain: false

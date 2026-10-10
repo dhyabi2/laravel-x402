@@ -1,0 +1,36 @@
+name: Feature request
+description: Support a scheme, network, facilitator or workflow this package does not cover
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do
+      description: The monetisation problem, not the implementation you have in mind.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would it look like
+      description: Route definitions, config, or an API sketch.
+      render: php
+    validations:
+      required: false
+
+  - type: input
+    id: spec
+    attributes:
+      label: Relevant specification section, if any
+      placeholder: specs/schemes/upto/scheme_upto.md
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This can be built on the existing public API (a price resolver, a facilitator, a reporter, an event listener) and does not need a change to the package
+        - label: I would be willing to open a pull request
