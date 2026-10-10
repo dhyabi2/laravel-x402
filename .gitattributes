@@ -1,0 +1,12 @@
+# Keep the distributed package small: development files are not needed by
+# anyone installing this with composer.
+/.github            export-ignore
+/docs               export-ignore
+/examples           export-ignore
+/tests              export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/phpstan.neon.dist  export-ignore
+/phpunit.xml.dist   export-ignore
+/pint.json          export-ignore
+/CONTRIBUTING.md    export-ignore
