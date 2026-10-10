@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   schedule:
     # The protocol and its facilitators move; a weekly run catches a dependency

@@ -9,7 +9,7 @@ body:
         the exact document and section, so it can be checked rather than argued.
 
         Deliberate differences are recorded in
-        [docs/SPEC_NOTES.md](../blob/main/docs/SPEC_NOTES.md) — please check
+        [docs/SPEC_NOTES.md](../blob/master/docs/SPEC_NOTES.md) — please check
         there first, in case the behaviour is intentional.
 
   - type: input

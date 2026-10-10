@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Thanks for the report. Please do not use this form for security
-        vulnerabilities — see [SECURITY.md](../blob/main/SECURITY.md).
+        vulnerabilities — see [SECURITY.md](../blob/master/SECURITY.md).
 
   - type: textarea
     id: what-happened
