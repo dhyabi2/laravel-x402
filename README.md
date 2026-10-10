@@ -47,47 +47,46 @@ implementation for PHP.
 ## How it works
 
 ```
-   ┌────────────────┐                                   ┌──────────────────┐
-   │   AI agent /   │                                   │   Your Laravel   │
-   │   HTTP client  │                                   │       app        │
-   └───────┬────────┘                                   └────────┬─────────┘
-           │  1. GET /market-data                                │
-           │ ───────────────────────────────────────────────────► │
-           │                                                     │
-           │  2. 402 Payment Required                            │
-           │     PAYMENT-REQUIRED: <base64 JSON>                 │
-           │     { amount, asset, payTo, network, resource }      │
-           │ ◄─────────────────────────────────────────────────── │
-           │                                                     │
-   ┌───────▼────────┐                                            │
-   │ 3. Sign an     │                                            │
-   │    EIP-3009    │                                            │
-   │    authorization                                            │
-   └───────┬────────┘                                            │
-           │  4. GET /market-data                                │
-           │     PAYMENT-SIGNATURE: <base64 JSON>                │
-           │ ───────────────────────────────────────────────────► │
-           │                                      ┌──────────────┴─────────┐
-           │                                      │ 5. validate locally:   │
-           │                                      │    amount, payTo,      │
-           │                                      │    network, resource,  │
-           │                                      │    expiry, replay      │
-           │                                      └──────────────┬─────────┘
-           │                                                     │
-           │                                       6. POST /verify│   ┌─────────────┐
-           │                                     ◄───────────────►│──►│ Facilitator │
-           │                                                     │   └──────┬──────┘
-           │                                      ┌──────────────┴─────────┐│
-           │                                      │ 7. run your controller ││
-           │                                      └──────────────┬─────────┘│
-           │                                       8. POST /settle│         │
-           │                                     ◄───────────────►│─────────┤
-           │                                                     │         ▼
-           │  9. 200 OK                                          │   ┌───────────┐
-           │     PAYMENT-RESPONSE: <base64 JSON>                 │   │   chain   │
-           │     { success, transaction, payer }                  │   │ USDC ──►  │
-           │ ◄─────────────────────────────────────────────────── │   │ your wallet
-           └                                                     └   └───────────┘
+  AI agent                        Your Laravel app                   Facilitator        Chain
+     │                                   │                                │               │
+     │  GET /market-data                 │                                │               │
+     ├──────────────────────────────────►│                                │               │
+     │                                   │                                │               │
+     │  402 Payment Required             │                                │               │
+     │  PAYMENT-REQUIRED: base64 JSON    │                                │               │
+     │  { amount, asset, payTo,          │                                │               │
+     │    network, resource, expiry }    │                                │               │
+     │◄──────────────────────────────────┤                                │               │
+     │                                   │                                │               │
+  ┌──┴────────────────────────┐          │                                │               │
+  │ sign an EIP-3009 transfer │          │                                │               │
+  │ authorization             │          │                                │               │
+  └──┬────────────────────────┘          │                                │               │
+     │  GET /market-data                 │                                │               │
+     │  PAYMENT-SIGNATURE: base64 JSON   │                                │               │
+     ├──────────────────────────────────►│                                │               │
+     │                              ┌────┴─────────────────────┐          │               │
+     │                              │ validate locally:        │          │               │
+     │                              │ amount, asset, payTo,    │          │               │
+     │                              │ network, resource,       │          │               │
+     │                              │ expiry, replay claim     │          │               │
+     │                              └────┬─────────────────────┘          │               │
+     │                                   │  POST /verify                  │               │
+     │                                   ├───────────────────────────────►│               │
+     │                                   │◄───────────────────────────────┤               │
+     │                              ┌────┴─────────────────────┐          │               │
+     │                              │ run your controller      │          │               │
+     │                              └────┬─────────────────────┘          │               │
+     │                                   │  POST /settle                  │               │
+     │                                   ├───────────────────────────────►│               │
+     │                                   │                                │  USDC to your │
+     │                                   │                                ├──────────────►│
+     │                                   │◄───────────────────────────────┤     wallet    │
+     │  200 OK                           │                                │               │
+     │  PAYMENT-RESPONSE: base64 JSON    │                                │               │
+     │  { success, transaction, payer }  │                                │               │
+     │◄──────────────────────────────────┤                                │               │
+     │                                   │                                │               │
 ```
 
 Funds move directly from the payer's wallet to yours. **This package never holds, routes or custodies money** — it only
