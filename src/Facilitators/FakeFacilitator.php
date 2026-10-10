@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Facilitators;
+namespace Requestway\X402\Facilitators;
 
 use Closure;
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\SupportedKind;
-use HydraLabs\X402\Core\Messages\SupportedResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Core\Protocol\Version;
 use PHPUnit\Framework\Assert;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\SupportedKind;
+use Requestway\X402\Core\Messages\SupportedResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Protocol\Version;
 
 /**
  * An in-memory facilitator for tests and local development.

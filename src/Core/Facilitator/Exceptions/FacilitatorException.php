@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Facilitator\Exceptions;
+namespace Requestway\X402\Core\Facilitator\Exceptions;
 
-use HydraLabs\X402\Core\Exceptions\X402Exception;
+use Requestway\X402\Core\Exceptions\X402Exception;
 
 /**
  * The facilitator could not be used. Distinct from a facilitator that answered

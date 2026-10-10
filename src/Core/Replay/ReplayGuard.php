@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Replay;
+namespace Requestway\X402\Core\Replay;
 
-use HydraLabs\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentPayload;
 
 /**
  * Resource-server-side replay protection.

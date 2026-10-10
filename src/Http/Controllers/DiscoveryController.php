@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Http\Controllers;
+namespace Requestway\X402\Http\Controllers;
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Discovery\RouteCatalog;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\JsonResponse;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Discovery\RouteCatalog;
 
 /**
  * Serves the machine-readable catalogue of paid routes.

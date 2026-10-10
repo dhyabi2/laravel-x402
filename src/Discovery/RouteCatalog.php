@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Discovery;
+namespace Requestway\X402\Discovery;
 
-use HydraLabs\X402\Bypass\BypassEvaluator;
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Routing\RequirementsFactory;
-use HydraLabs\X402\Routing\RouteResolver;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
+use Requestway\X402\Bypass\BypassEvaluator;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Routing\RequirementsFactory;
+use Requestway\X402\Routing\RouteResolver;
 
 /**
  * Enumerates the application's paid routes.

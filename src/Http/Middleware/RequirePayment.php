@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Http\Middleware;
+namespace Requestway\X402\Http\Middleware;
 
 use Closure;
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorException;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Protocol\Codec;
-use HydraLabs\X402\Core\Validation\ValidationFailure;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Enums\SettlementMode;
-use HydraLabs\X402\Events\PaymentContext;
-use HydraLabs\X402\Http\DeferredSettlement;
-use HydraLabs\X402\Http\PaymentResponseFactory;
-use HydraLabs\X402\Recording\PaymentRecorder;
-use HydraLabs\X402\Routing\RouteOptionParser;
-use HydraLabs\X402\Routing\RoutePayment;
-use HydraLabs\X402\X402Manager;
 use Illuminate\Http\Request;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorException;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Protocol\Codec;
+use Requestway\X402\Core\Validation\ValidationFailure;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Enums\SettlementMode;
+use Requestway\X402\Events\PaymentContext;
+use Requestway\X402\Http\DeferredSettlement;
+use Requestway\X402\Http\PaymentResponseFactory;
+use Requestway\X402\Recording\PaymentRecorder;
+use Requestway\X402\Routing\RouteOptionParser;
+use Requestway\X402\Routing\RoutePayment;
+use Requestway\X402\X402Manager;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

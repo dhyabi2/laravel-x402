@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Http\Middleware\RequirePayment;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Http\Middleware\RequirePayment;
 
 beforeEach(function (): void {
     X402::fake();

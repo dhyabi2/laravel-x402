@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Http\Middleware;
+namespace Requestway\X402\Http\Middleware;
 
 use Illuminate\Http\Request;
 

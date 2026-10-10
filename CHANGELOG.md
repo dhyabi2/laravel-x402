@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `hydralabs/laravel-x402` are documented here.
+All notable changes to `requestway/laravel-x402` are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this package follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -37,5 +37,5 @@ Initial release. Implements x402 protocol version 2 and reads version 1.
 - Optional batched, queued reporting behind `X402_PLATFORM_KEY`
 - Framework-agnostic protocol core under `src/Core`, with no Illuminate dependencies
 
-[Unreleased]: https://github.com/ryankny/laravel-x402/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/ryankny/laravel-x402/releases/tag/v0.1.0
+[Unreleased]: https://github.com/requestway/laravel-x402/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/requestway/laravel-x402/releases/tag/v0.1.0

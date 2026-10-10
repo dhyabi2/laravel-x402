@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Routing;
+namespace Requestway\X402\Routing;
 
-use HydraLabs\X402\Attributes\RequiresPayment;
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Enums\SettlementMode;
-use HydraLabs\X402\Pricing\PriceResolver;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
+use Requestway\X402\Attributes\RequiresPayment;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Enums\SettlementMode;
+use Requestway\X402\Pricing\PriceResolver;
 
 /**
  * Builds a route's resolved payment configuration.

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Networks\Network;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Networks\Network;
 
 it('normalizes v1 aliases to CAIP-2', function (string $alias, string $caip2): void {
     expect(Network::normalize($alias))->toBe($caip2);

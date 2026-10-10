@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Enums;
+namespace Requestway\X402\Enums;
 
 enum PaymentStatus: string
 {

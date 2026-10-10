@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\InvalidAmountException;
-use HydraLabs\X402\Core\Money\Integers;
+use Requestway\X402\Core\Exceptions\InvalidAmountException;
+use Requestway\X402\Core\Money\Integers;
 
 it('normalizes leading zeros', function (): void {
     expect(Integers::normalize('000'))->toBe('0')

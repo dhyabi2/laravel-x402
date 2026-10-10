@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Http;
+namespace Requestway\X402\Http;
 
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Protocol\Codec;
 use Illuminate\Http\JsonResponse;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Protocol\Codec;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

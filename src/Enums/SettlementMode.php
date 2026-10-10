@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Enums;
+namespace Requestway\X402\Enums;
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
 
 enum SettlementMode: string
 {

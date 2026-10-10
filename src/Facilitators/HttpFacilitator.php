@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Facilitators;
+namespace Requestway\X402\Facilitators;
 
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorConnectionException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorResponseException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorTimeoutException;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Facilitator\FacilitatorAuth;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\SupportedResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
-use HydraLabs\X402\Core\Protocol\CodecRegistry;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Factory as HttpFactory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorConnectionException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorResponseException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorTimeoutException;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Facilitator\FacilitatorAuth;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\SupportedResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Protocol\CodecRegistry;
 use Throwable;
 
 /**

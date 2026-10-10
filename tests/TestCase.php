@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Tests;
+namespace Requestway\X402\Tests;
 
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\X402ServiceProvider;
 use Illuminate\Contracts\Config\Repository;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\X402ServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

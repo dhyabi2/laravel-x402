@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Messages;
+namespace Requestway\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Core\Protocol\Version;
 
 final class SupportedKind
 {

@@ -10,7 +10,7 @@ latest `0.x` release.
 **Please do not open a public issue, pull request or discussion.**
 
 Report privately through
-[GitHub's private vulnerability reporting](https://github.com/ryankny/laravel-x402/security/advisories/new).
+[GitHub's private vulnerability reporting](https://github.com/requestway/laravel-x402/security/advisories/new).
 
 Please include:
 

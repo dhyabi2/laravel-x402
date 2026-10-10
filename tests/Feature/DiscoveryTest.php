@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Tests\Support\TestController;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Tests\Support\TestController;
 
 beforeEach(function (): void {
     Route::get('/premium', fn (): array => [])->middleware('x402:0.01,description=Market data,mime=application/json');

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Testing;
+namespace Requestway\X402\Core\Testing;
 
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Support\Clock;
-use HydraLabs\X402\Core\Support\SystemClock;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Support\Clock;
+use Requestway\X402\Core\Support\SystemClock;
 
 /**
  * Builds structurally valid `exact`/EIP-3009 payloads without a wallet.

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Config;
+namespace Requestway\X402\Config;
 
-use HydraLabs\X402\Core\Assets\AssetRegistry;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Core\Support\EvmAddress;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Enums\SettlementMode;
 use Illuminate\Contracts\Config\Repository;
+use Requestway\X402\Core\Assets\AssetRegistry;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Core\Support\EvmAddress;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Enums\SettlementMode;
 
 /**
  * Typed, validated access to config/x402.php.

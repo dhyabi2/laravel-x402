@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Tests\Support\TestController;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Tests\Support\TestController;
 
 it('lists every paid route with its price, networks and bypass rules', function (): void {
     config()->set('x402.bypass.ips', ['10.0.0.1']);

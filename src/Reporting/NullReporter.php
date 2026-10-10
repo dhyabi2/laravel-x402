@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Reporting;
+namespace Requestway\X402\Reporting;
 
 /**
  * The default: reports nothing, anywhere.

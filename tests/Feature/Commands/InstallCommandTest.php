@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\File;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Tests\TestCase;
 
 it('publishes the config and migration without prompting', function (): void {
     [$status, $output] = runCommand('x402:install', ['--no-prompt' => true]);

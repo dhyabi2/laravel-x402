@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Routing\RouteOptionParser;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Routing\RouteOptionParser;
 
 it('reads a bare price as the first parameter', function (): void {
     expect(RouteOptionParser::parse(['0.01']))->toBe(['price' => '0.01'])

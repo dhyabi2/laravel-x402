@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Routing;
+namespace Requestway\X402\Routing;
 
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Enums\SettlementMode;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Enums\SettlementMode;
 
 /**
  * The fully resolved payment configuration for one route, after config

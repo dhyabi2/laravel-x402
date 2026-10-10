@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Pricing;
+namespace Requestway\X402\Pricing;
 
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Http\Request;
+use Requestway\X402\Routing\RoutePayment;
 
 /**
  * Computes a route's price at request time.

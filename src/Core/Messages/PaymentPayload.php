@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Messages;
+namespace Requestway\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Money\Integers;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Support\Json;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Money\Integers;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Support\Json;
 
 /**
  * PaymentPayload, x402 core spec v2 §5.2.

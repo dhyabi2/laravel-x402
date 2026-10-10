@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Validation;
+namespace Requestway\X402\Core\Validation;
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Errors\ErrorCode;
 
 /**
  * A locally detected reason to reject a payment, before the facilitator is

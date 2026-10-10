@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Tests\Support\FlatRatePriceResolver;
-use HydraLabs\X402\Tests\Support\PaidController;
-use HydraLabs\X402\Tests\Support\TestController;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Tests\Support\FlatRatePriceResolver;
+use Requestway\X402\Tests\Support\PaidController;
+use Requestway\X402\Tests\Support\TestController;
 
 beforeEach(function (): void {
     X402::fake();
@@ -205,7 +205,7 @@ it('rejects a nonsense price loudly', function (): void {
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/bad'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\InvalidAmountException::class);
+        ->toThrow(Requestway\X402\Core\Exceptions\InvalidAmountException::class);
 });
 
 it('rejects an unknown middleware option loudly', function (): void {
@@ -214,7 +214,7 @@ it('rejects an unknown middleware option loudly', function (): void {
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/bad'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'Unknown x402 middleware option');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'Unknown x402 middleware option');
 });
 
 it('accepts a per-route wallet', function (): void {
@@ -231,7 +231,7 @@ it('rejects a malformed per-route wallet', function (): void {
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/affiliate'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'EVM address');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'EVM address');
 });
 
 it('accepts a per-route network list', function (): void {

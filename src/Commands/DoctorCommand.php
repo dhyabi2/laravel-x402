@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Commands;
+namespace Requestway\X402\Commands;
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorException;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Messages\SupportedKind;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Discovery\CatalogEntry;
-use HydraLabs\X402\Discovery\RouteCatalog;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Models\X402Payment;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
 use Illuminate\Support\Facades\Schema;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorException;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Messages\SupportedKind;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Discovery\CatalogEntry;
+use Requestway\X402\Discovery\RouteCatalog;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Models\X402Payment;
 use Throwable;
 
 /**

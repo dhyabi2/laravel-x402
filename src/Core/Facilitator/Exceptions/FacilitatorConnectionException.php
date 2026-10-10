@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Facilitator\Exceptions;
+namespace Requestway\X402\Core\Facilitator\Exceptions;
 
 /**
  * The facilitator could not be reached at all. Safe to retry: nothing was

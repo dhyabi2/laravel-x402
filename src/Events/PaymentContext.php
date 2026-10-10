@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Events;
+namespace Requestway\X402\Events;
 
-use HydraLabs\X402\Core\Assets\Asset;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Core\Support\EvmAddress;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Routing\RoutePayment;
+use Requestway\X402\Core\Assets\Asset;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Support\EvmAddress;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Routing\RoutePayment;
 
 /**
  * Everything the package knows about one payment attempt.

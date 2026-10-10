@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402;
+namespace Requestway\X402;
 
 use Closure;
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Protocol\CodecRegistry;
-use HydraLabs\X402\Core\Replay\ReplayGuard;
-use HydraLabs\X402\Core\Validation\PaymentValidator;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Facilitators\FakeFacilitator;
-use HydraLabs\X402\Pricing\CallbackPriceResolver;
-use HydraLabs\X402\Pricing\PriceResolver;
-use HydraLabs\X402\Recording\PaymentRecorder;
-use HydraLabs\X402\Reporting\Reporter;
-use HydraLabs\X402\Routing\RequirementsFactory;
-use HydraLabs\X402\Routing\RoutePayment;
-use HydraLabs\X402\Routing\RouteResolver;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Http\Request;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Protocol\CodecRegistry;
+use Requestway\X402\Core\Replay\ReplayGuard;
+use Requestway\X402\Core\Validation\PaymentValidator;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Facilitators\FakeFacilitator;
+use Requestway\X402\Pricing\CallbackPriceResolver;
+use Requestway\X402\Pricing\PriceResolver;
+use Requestway\X402\Recording\PaymentRecorder;
+use Requestway\X402\Reporting\Reporter;
+use Requestway\X402\Routing\RequirementsFactory;
+use Requestway\X402\Routing\RoutePayment;
+use Requestway\X402\Routing\RouteResolver;
 
 /**
  * The package's public API, resolved as the `x402` container binding and

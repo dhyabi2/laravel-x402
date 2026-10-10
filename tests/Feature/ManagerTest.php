@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\SupportedKind;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Facilitators\FakeFacilitator;
-use HydraLabs\X402\Facilitators\HttpFacilitator;
-use HydraLabs\X402\Pricing\CallbackPriceResolver;
-use HydraLabs\X402\Reporting\Reporter;
-use HydraLabs\X402\X402Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\SupportedKind;
+use Requestway\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Facilitators\FakeFacilitator;
+use Requestway\X402\Facilitators\HttpFacilitator;
+use Requestway\X402\Pricing\CallbackPriceResolver;
+use Requestway\X402\Reporting\Reporter;
+use Requestway\X402\X402Manager;
 
 it('exposes the package services', function (): void {
     $x402 = app(X402Manager::class);
@@ -24,12 +24,12 @@ it('exposes the package services', function (): void {
     expect($x402->config()->mode())->toBe(Mode::Enforce)
         ->and($x402->mode())->toBe(Mode::Enforce)
         ->and($x402->codecs()->current()->version())->toBe(Version::CURRENT)
-        ->and($x402->routes())->toBeInstanceOf(HydraLabs\X402\Routing\RouteResolver::class)
-        ->and($x402->requirements())->toBeInstanceOf(HydraLabs\X402\Routing\RequirementsFactory::class)
-        ->and($x402->validator())->toBeInstanceOf(HydraLabs\X402\Core\Validation\PaymentValidator::class)
-        ->and($x402->bypass())->toBeInstanceOf(HydraLabs\X402\Bypass\BypassEvaluator::class)
-        ->and($x402->recorder())->toBeInstanceOf(HydraLabs\X402\Recording\PaymentRecorder::class)
-        ->and($x402->replayGuard())->toBeInstanceOf(HydraLabs\X402\Core\Replay\ReplayGuard::class)
+        ->and($x402->routes())->toBeInstanceOf(Requestway\X402\Routing\RouteResolver::class)
+        ->and($x402->requirements())->toBeInstanceOf(Requestway\X402\Routing\RequirementsFactory::class)
+        ->and($x402->validator())->toBeInstanceOf(Requestway\X402\Core\Validation\PaymentValidator::class)
+        ->and($x402->bypass())->toBeInstanceOf(Requestway\X402\Bypass\BypassEvaluator::class)
+        ->and($x402->recorder())->toBeInstanceOf(Requestway\X402\Recording\PaymentRecorder::class)
+        ->and($x402->replayGuard())->toBeInstanceOf(Requestway\X402\Core\Replay\ReplayGuard::class)
         ->and($x402->reporter())->toBeInstanceOf(Reporter::class);
 });
 
@@ -65,9 +65,9 @@ it('swaps in any facilitator implementation', function (): void {
             return SettleResponse::failed('eip155:1', ErrorCode::UnexpectedSettleError);
         }
 
-        public function supported(): HydraLabs\X402\Core\Messages\SupportedResponse
+        public function supported(): Requestway\X402\Core\Messages\SupportedResponse
         {
-            return new HydraLabs\X402\Core\Messages\SupportedResponse([]);
+            return new Requestway\X402\Core\Messages\SupportedResponse([]);
         }
     };
 
@@ -99,7 +99,7 @@ it('resolves a route payment for a request', function (): void {
 
     $payment = X402::resolveRoute(Request::create('http://localhost/premium'), ['price' => '0.33']);
 
-    expect($payment->price)->toBe('0.33')->and($payment->payTo)->toBe(HydraLabs\X402\Tests\TestCase::PAY_TO);
+    expect($payment->price)->toBe('0.33')->and($payment->payTo)->toBe(Requestway\X402\Tests\TestCase::PAY_TO);
 });
 
 it('forgets registered bypass callbacks when flushed', function (): void {

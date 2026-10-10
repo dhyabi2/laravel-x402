@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Messages;
+namespace Requestway\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Errors\ErrorCode;
 
 /**
  * SettlementResponse, x402 core spec v2 §5.3.

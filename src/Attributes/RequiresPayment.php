@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Attributes;
+namespace Requestway\X402\Attributes;
 
 use Attribute;
 
@@ -10,7 +10,7 @@ use Attribute;
  * Declares a controller or action as paid.
  *
  * Applied by the `x402` middleware when it is present without a price, or
- * app-wide by pushing HydraLabs\X402\Http\Middleware\HonorPaymentAttributes
+ * app-wide by pushing Requestway\X402\Http\Middleware\HonorPaymentAttributes
  * into a middleware group.
  *
  *     #[RequiresPayment(price: '0.01', description: 'Market snapshot')]

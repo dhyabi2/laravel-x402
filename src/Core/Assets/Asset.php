@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Assets;
+namespace Requestway\X402\Core\Assets;
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Core\Support\EvmAddress;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Core\Support\EvmAddress;
 
 /**
  * A USD-pegged token on one network.

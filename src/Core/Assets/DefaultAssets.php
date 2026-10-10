@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Assets;
+namespace Requestway\X402\Core\Assets;
 
 /**
  * Default USD-pegged assets per CAIP-2 network.

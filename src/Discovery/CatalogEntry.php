@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Discovery;
+namespace Requestway\X402\Discovery;
 
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Routing\RoutePayment;
 
 /**
  * One paid route, as reported by discovery and x402:routes.

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Tests\Support;
+namespace Requestway\X402\Tests\Support;
 
-use HydraLabs\X402\Attributes\RequiresPayment;
 use Illuminate\Routing\Controller;
+use Requestway\X402\Attributes\RequiresPayment;
 
 /**
  * Every action is paid, with one overriding the class-level price.

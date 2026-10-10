@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Errors;
+namespace Requestway\X402\Core\Errors;
 
 /**
  * Error reasons defined in x402 core specification v2, section 9.

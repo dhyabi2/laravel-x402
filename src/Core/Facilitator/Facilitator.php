@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Facilitator;
+namespace Requestway\X402\Core\Facilitator;
 
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorException;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\SupportedResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorException;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\SupportedResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
 
 /**
  * A facilitator verifies and settles payments on chain on the resource

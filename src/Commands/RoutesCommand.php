@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Commands;
+namespace Requestway\X402\Commands;
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Discovery\CatalogEntry;
-use HydraLabs\X402\Discovery\RouteCatalog;
 use Illuminate\Console\Command;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Discovery\CatalogEntry;
+use Requestway\X402\Discovery\RouteCatalog;
 
 final class RoutesCommand extends Command
 {

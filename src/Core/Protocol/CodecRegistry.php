@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Protocol;
+namespace Requestway\X402\Core\Protocol;
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
 
 /**
  * Chooses the codec for an incoming request and for emitting responses.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Messages;
+namespace Requestway\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Money\Integers;
-use HydraLabs\X402\Core\Support\EvmAddress;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Money\Integers;
+use Requestway\X402\Core\Support\EvmAddress;
 
 /**
  * PaymentRequirements, x402 core spec v2 §5.1.2.

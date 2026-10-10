@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Messages;
+namespace Requestway\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Protocol\Version;
 
 /**
  * PaymentRequired, x402 core spec v2 §5.1.

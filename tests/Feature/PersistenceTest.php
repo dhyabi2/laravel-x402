@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Enums\PaymentStatus;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Models\X402Payment;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Enums\PaymentStatus;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Models\X402Payment;
+use Requestway\X402\Tests\TestCase;
 
 beforeEach(function (): void {
     X402::fake();

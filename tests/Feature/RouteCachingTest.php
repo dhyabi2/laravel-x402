@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Routing\RouteResolver;
-use HydraLabs\X402\Tests\Support\TestController;
 use Illuminate\Routing\CompiledRouteCollection;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Routing\RouteResolver;
+use Requestway\X402\Tests\Support\TestController;
 
 /**
  * Production apps run `php artisan route:cache`, which serializes each route's

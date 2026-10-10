@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Facades\X402;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Facades\X402;
 
 beforeEach(function (): void {
     Route::get('/premium', fn (): array => ['data' => 'secret'])

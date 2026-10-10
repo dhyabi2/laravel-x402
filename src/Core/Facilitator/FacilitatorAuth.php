@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Facilitator;
+namespace Requestway\X402\Core\Facilitator;
 
 /**
  * Supplies authentication headers for each facilitator call.

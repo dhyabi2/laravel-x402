@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Enums\SettlementMode;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Enums\SettlementMode;
 
 it('parses the modes the config documents', function (string $input, Mode $expected): void {
     expect(Mode::parse($input))->toBe($expected);

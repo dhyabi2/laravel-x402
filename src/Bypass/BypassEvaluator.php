@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Bypass;
+namespace Requestway\X402\Bypass;
 
 use Closure;
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Routing\RoutePayment;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 /**

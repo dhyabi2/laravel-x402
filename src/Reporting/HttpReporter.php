@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Reporting;
+namespace Requestway\X402\Reporting;
 
-use HydraLabs\X402\Reporting\Jobs\SendX402Report;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Requestway\X402\Reporting\Jobs\SendX402Report;
 use Throwable;
 
 /**

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Assets\Asset;
-use HydraLabs\X402\Core\Assets\AssetRegistry;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Networks\Network;
+use Requestway\X402\Core\Assets\Asset;
+use Requestway\X402\Core\Assets\AssetRegistry;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Networks\Network;
 
 it('ships the canonical USDC addresses from the specification', function (): void {
     $registry = new AssetRegistry;

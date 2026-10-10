@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\InvalidAmountException;
-use HydraLabs\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Exceptions\InvalidAmountException;
+use Requestway\X402\Core\Money\UsdConverter;
 
 it('parses prices written the ways people write them', function (string|int|float $input, string $expected): void {
     expect(UsdConverter::parsePrice($input))->toBe($expected);

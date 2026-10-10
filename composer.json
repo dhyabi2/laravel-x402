@@ -1,5 +1,5 @@
 {
-    "name": "hydralabs/laravel-x402",
+    "name": "requestway/laravel-x402",
     "description": "Charge AI agents and HTTP clients for your Laravel routes with the x402 payment protocol.",
     "keywords": [
         "x402",
@@ -11,11 +11,11 @@
         "monetization",
         "mcp"
     ],
-    "homepage": "https://github.com/ryankny/laravel-x402",
+    "homepage": "https://github.com/requestway/laravel-x402",
     "license": "MIT",
     "authors": [
         {
-            "name": "Hydra Labs",
+            "name": "Requestway",
             "role": "Developer"
         }
     ],
@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "HydraLabs\\X402\\": "src/"
+            "Requestway\\X402\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "HydraLabs\\X402\\Tests\\": "tests/"
+            "Requestway\\X402\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -60,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "HydraLabs\\X402\\X402ServiceProvider"
+                "Requestway\\X402\\X402ServiceProvider"
             ],
             "aliases": {
-                "X402": "HydraLabs\\X402\\Facades\\X402"
+                "X402": "Requestway\\X402\\Facades\\X402"
             }
         }
     },

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Events;
+namespace Requestway\X402\Events;
 
-use HydraLabs\X402\Core\Messages\SettleResponse;
 use Illuminate\Foundation\Events\Dispatchable;
+use Requestway\X402\Core\Messages\SettleResponse;
 
 /**
  * A payment was settled. Funds have moved to the configured wallet.

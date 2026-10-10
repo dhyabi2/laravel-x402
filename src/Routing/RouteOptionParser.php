@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Routing;
+namespace Requestway\X402\Routing;
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
 
 /**
  * Parses middleware parameters into route options.

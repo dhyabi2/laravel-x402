@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Events\PaymentFailed;
-use HydraLabs\X402\Events\PaymentRequired;
-use HydraLabs\X402\Events\PaymentSettled;
-use HydraLabs\X402\Events\PaymentVerified;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Events\PaymentFailed;
+use Requestway\X402\Events\PaymentRequired;
+use Requestway\X402\Events\PaymentSettled;
+use Requestway\X402\Events\PaymentVerified;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Tests\TestCase;
 
 beforeEach(function (): void {
     $this->fake = X402::fake();
@@ -94,7 +94,7 @@ it('carries the exception when the facilitator itself failed', function (): void
         TestCase::FACILITATOR.'/verify' => Illuminate\Support\Facades\Http::response([], 500),
     ]);
 
-    X402::useFacilitator(app()->make(HydraLabs\X402\Facilitators\HttpFacilitator::class, [
+    X402::useFacilitator(app()->make(Requestway\X402\Facilitators\HttpFacilitator::class, [
         'baseUrl' => TestCase::FACILITATOR,
     ]));
 

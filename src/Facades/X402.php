@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Facades;
+namespace Requestway\X402\Facades;
 
 use Closure;
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Facilitators\FakeFacilitator;
-use HydraLabs\X402\Routing\RoutePayment;
-use HydraLabs\X402\X402Manager;
 use Illuminate\Support\Facades\Facade;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Facilitators\FakeFacilitator;
+use Requestway\X402\Routing\RoutePayment;
+use Requestway\X402\X402Manager;
 
 /**
  * @method static X402Config config()
  * @method static Facilitator facilitator()
  * @method static FakeFacilitator fake()
  * @method static bool isFaked()
- * @method static X402Manager priceUsing(Closure|string|\HydraLabs\X402\Pricing\PriceResolver $resolver)
+ * @method static X402Manager priceUsing(Closure|string|\Requestway\X402\Pricing\PriceResolver $resolver)
  * @method static X402Manager bypassUsing(Closure $callback)
  * @method static Facilitator useFacilitator(Facilitator $facilitator)
  * @method static RoutePayment resolveRoute(\Illuminate\Http\Request $request, array<string, mixed> $options = [])

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorConnectionException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorResponseException;
-use HydraLabs\X402\Core\Facilitator\Exceptions\FacilitatorTimeoutException;
-use HydraLabs\X402\Core\Facilitator\Facilitator;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorConnectionException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorResponseException;
+use Requestway\X402\Core\Facilitator\Exceptions\FacilitatorTimeoutException;
+use Requestway\X402\Core\Facilitator\Facilitator;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
+use Requestway\X402\Tests\TestCase;
 
 function facilitatorRequirements(): PaymentRequirements
 {
@@ -27,7 +27,7 @@ function callFacilitator(): Facilitator
     return app(Facilitator::class);
 }
 
-function samplePayload(): HydraLabs\X402\Core\Messages\PaymentPayload
+function samplePayload(): Requestway\X402\Core\Messages\PaymentPayload
 {
     return (new PaymentPayloadFactory)->exact(facilitatorRequirements());
 }
@@ -271,7 +271,7 @@ it('can be configured to serve the route for free when the facilitator is down',
     $this->getJson('/premium', payment($requirements))
         ->assertOk()
         ->assertExactJson(['data' => 'secret'])
-        ->assertHeader(HydraLabs\X402\Http\Middleware\RequirePayment::BYPASS_HEADER, 'facilitator-unavailable');
+        ->assertHeader(Requestway\X402\Http\Middleware\RequirePayment::BYPASS_HEADER, 'facilitator-unavailable');
 });
 
 it('records a facilitator failure as a failed payment', function (): void {
@@ -282,7 +282,7 @@ it('records a facilitator failure as a failed payment', function (): void {
     $requirements = paymentRequired($this->getJson('/premium'))->first();
     $this->getJson('/premium', payment($requirements));
 
-    $payment = HydraLabs\X402\Models\X402Payment::query()->failed()->sole();
+    $payment = Requestway\X402\Models\X402Payment::query()->failed()->sole();
 
     expect($payment->failure_reason)->toBe('facilitator_unavailable')
         ->and($payment->facilitator)->toBe('facilitator.test');
@@ -311,15 +311,15 @@ it('returns nothing and records the failure when a deferred settlement cannot re
     // operator's problem to reconcile, and it is recorded as such.
     $this->getJson('/premium', payment($requirements))->assertOk();
 
-    $payment = HydraLabs\X402\Models\X402Payment::query()->sole();
+    $payment = Requestway\X402\Models\X402Payment::query()->sole();
 
-    expect($payment->status)->toBe(HydraLabs\X402\Enums\PaymentStatus::Failed)
+    expect($payment->status)->toBe(Requestway\X402\Enums\PaymentStatus::Failed)
         ->and($payment->failure_reason)->toBe('facilitator_unavailable')
         ->and($payment->meta['stage'])->toBe('settle_after_response');
 });
 
 it('builds auth headers per call for a facilitator that signs each request', function (): void {
-    config()->set('x402.facilitator.auth', new class implements HydraLabs\X402\Core\Facilitator\FacilitatorAuth
+    config()->set('x402.facilitator.auth', new class implements Requestway\X402\Core\Facilitator\FacilitatorAuth
     {
         public function headers(string $operation): array
         {
@@ -361,7 +361,7 @@ it('sends static headers and signed headers together', function (): void {
         && $request->hasHeader('X-From-Container', 'supported'));
 });
 
-final class StaticFacilitatorAuth implements HydraLabs\X402\Core\Facilitator\FacilitatorAuth
+final class StaticFacilitatorAuth implements Requestway\X402\Core\Facilitator\FacilitatorAuth
 {
     public function headers(string $operation): array
     {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Reporting\HttpReporter;
-use HydraLabs\X402\Reporting\Jobs\SendX402Report;
-use HydraLabs\X402\Reporting\NullReporter;
-use HydraLabs\X402\Reporting\Reporter;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Reporting\HttpReporter;
+use Requestway\X402\Reporting\Jobs\SendX402Report;
+use Requestway\X402\Reporting\NullReporter;
+use Requestway\X402\Reporting\Reporter;
 
 beforeEach(function (): void {
     X402::fake();

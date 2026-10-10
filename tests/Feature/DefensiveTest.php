@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Enums\SettlementMode;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Http\PaymentResponseFactory;
-use HydraLabs\X402\Routing\RequirementsFactory;
-use HydraLabs\X402\Routing\RoutePayment;
-use HydraLabs\X402\Routing\RouteResolver;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Enums\SettlementMode;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Http\PaymentResponseFactory;
+use Requestway\X402\Routing\RequirementsFactory;
+use Requestway\X402\Routing\RoutePayment;
+use Requestway\X402\Routing\RouteResolver;
 
 /**
  * The guards that only fire when something is badly wrong. They exist so a

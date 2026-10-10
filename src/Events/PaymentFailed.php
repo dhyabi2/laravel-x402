@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Events;
+namespace Requestway\X402\Events;
 
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
 use Illuminate\Foundation\Events\Dispatchable;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
 use Throwable;
 
 /**

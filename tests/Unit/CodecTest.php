@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Protocol\Codec;
-use HydraLabs\X402\Core\Protocol\CodecRegistry;
-use HydraLabs\X402\Core\Protocol\V1Codec;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Support\Base64;
-use HydraLabs\X402\Core\Support\Json;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Protocol\Codec;
+use Requestway\X402\Core\Protocol\CodecRegistry;
+use Requestway\X402\Core\Protocol\V1Codec;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Support\Base64;
+use Requestway\X402\Core\Support\Json;
 
 it('uses the header names the v2 HTTP transport defines', function (): void {
     $codec = new V2Codec;

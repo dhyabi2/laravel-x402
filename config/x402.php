@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Networks\Network;
+use Requestway\X402\Core\Networks\Network;
 
 return [
 
@@ -115,7 +115,7 @@ return [
         | Facilitators that sign each request rather than taking a long-lived
         | token — the Coinbase CDP facilitator among them — need headers built
         | per call. Point this at a class implementing
-        | HydraLabs\X402\Core\Facilitator\FacilitatorAuth.
+        | Requestway\X402\Core\Facilitator\FacilitatorAuth.
         */
         'auth' => env('X402_FACILITATOR_AUTH'),
 
@@ -292,7 +292,7 @@ return [
 
     'reporting' => [
         'enabled' => (bool) env('X402_PLATFORM_KEY', false),
-        'url' => env('X402_PLATFORM_URL', 'https://api.hydralabs.dev/x402/events'),
+        'url' => env('X402_PLATFORM_URL', 'https://api.requestway.com/x402/events'),
         'key' => env('X402_PLATFORM_KEY'),
         'queue' => env('X402_PLATFORM_QUEUE'),
         'connection' => env('X402_PLATFORM_QUEUE_CONNECTION'),

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Symfony\Component\Finder\Finder;
 
 /**
- * src/Core is the future hydralabs/x402-php: a framework-agnostic protocol
+ * src/Core is the future requestway/x402-php: a framework-agnostic protocol
  * implementation for WordPress and plain PHP. A stray Illuminate import would
  * quietly make that split impossible, so it is checked rather than hoped for.
  */

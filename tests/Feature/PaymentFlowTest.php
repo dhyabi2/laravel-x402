@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Protocol\V1Codec;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Enums\PaymentStatus;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Http\Middleware\RequirePayment;
-use HydraLabs\X402\Models\X402Payment;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Protocol\V1Codec;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Enums\PaymentStatus;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Http\Middleware\RequirePayment;
+use Requestway\X402\Models\X402Payment;
+use Requestway\X402\Tests\TestCase;
 
 beforeEach(function (): void {
     $this->fake = X402::fake();
@@ -60,7 +60,7 @@ it('verifies before the route runs and settles after it succeeds', function (): 
     $this->fake->rejectVerification(function () use (&$order) {
         $order[] = 'verify';
 
-        return HydraLabs\X402\Core\Messages\VerifyResponse::valid(TestCase::PAYER);
+        return Requestway\X402\Core\Messages\VerifyResponse::valid(TestCase::PAYER);
     });
 
     $requirements = paymentRequired($this->getJson('/ordered'))->first();

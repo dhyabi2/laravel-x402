@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Money;
+namespace Requestway\X402\Core\Money;
 
-use HydraLabs\X402\Core\Exceptions\InvalidAmountException;
+use Requestway\X402\Core\Exceptions\InvalidAmountException;
 
 /**
  * Converts between human USD prices and atomic token units.

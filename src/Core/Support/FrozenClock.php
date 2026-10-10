@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Support;
+namespace Requestway\X402\Core\Support;
 
 final class FrozenClock implements Clock
 {

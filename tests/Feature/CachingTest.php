@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Http\PaymentResponseFactory;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Http\PaymentResponseFactory;
 
 beforeEach(function (): void {
     X402::fake();

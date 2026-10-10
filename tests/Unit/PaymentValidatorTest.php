@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Support\FrozenClock;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
-use HydraLabs\X402\Core\Validation\PaymentValidator;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Support\FrozenClock;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
+use Requestway\X402\Core\Validation\PaymentValidator;
 
 const NOW = 1740672100;
 

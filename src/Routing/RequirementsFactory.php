@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Routing;
+namespace Requestway\X402\Routing;
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Core\Networks\Network;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Networks\Network;
 
 /**
  * Turns a resolved route into the PaymentRequired object advertised on a 402.

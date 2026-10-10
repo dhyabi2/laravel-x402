@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
-use HydraLabs\X402\Core\Protocol\V1Codec;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Core\Support\Base64;
-use HydraLabs\X402\Core\Support\Json;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Models\X402Payment;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Protocol\V1Codec;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Core\Support\Base64;
+use Requestway\X402\Core\Support\Json;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Models\X402Payment;
+use Requestway\X402\Tests\TestCase;
 
 beforeEach(function (): void {
     $this->fake = X402::fake();
@@ -120,7 +120,7 @@ it('rejects a payment bought for a different resource', function (): void {
     // asset, but the resource echo gives it away even before the amount does.
     $response = $this->getJson('/premium', payment(
         $premium,
-        new HydraLabs\X402\Core\Messages\ResourceInfo('http://localhost/cheap'),
+        new Requestway\X402\Core\Messages\ResourceInfo('http://localhost/cheap'),
     ));
 
     $response->assertStatus(402);

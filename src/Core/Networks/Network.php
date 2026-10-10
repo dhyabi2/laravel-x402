@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Networks;
+namespace Requestway\X402\Core\Networks;
 
-use HydraLabs\X402\Core\Exceptions\ConfigurationException;
+use Requestway\X402\Core\Exceptions\ConfigurationException;
 
 /**
  * CAIP-2 network identifiers.

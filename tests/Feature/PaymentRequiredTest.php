@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Http\PaymentResponseFactory;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Http\PaymentResponseFactory;
+use Requestway\X402\Tests\TestCase;
 
 beforeEach(function (): void {
     Route::get('/premium', fn (): array => ['data' => 'secret'])
@@ -126,7 +126,7 @@ it('fails loudly when no wallet is configured, rather than charging nobody', fun
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/premium'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'No x402 wallet configured');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'No x402 wallet configured');
 });
 
 it('fails loudly when the wallet address is malformed', function (): void {
@@ -135,7 +135,7 @@ it('fails loudly when the wallet address is malformed', function (): void {
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/premium'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'EVM address');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'EVM address');
 });
 
 it('fails loudly when a route has no price at all', function (): void {
@@ -144,7 +144,7 @@ it('fails loudly when a route has no price at all', function (): void {
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/priceless'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'No price configured');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'No price configured');
 });
 
 it('fails loudly when a route accepts a network with no asset', function (): void {
@@ -153,5 +153,5 @@ it('fails loudly when a route accepts a network with no asset', function (): voi
     $this->withoutExceptionHandling();
 
     expect(fn () => $this->getJson('/fuji'))
-        ->toThrow(HydraLabs\X402\Core\Exceptions\ConfigurationException::class, 'no asset is configured');
+        ->toThrow(Requestway\X402\Core\Exceptions\ConfigurationException::class, 'no asset is configured');
 });

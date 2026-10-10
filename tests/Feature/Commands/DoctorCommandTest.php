@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Messages\SupportedKind;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
+use Requestway\X402\Core\Messages\SupportedKind;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Tests\TestCase;
 
 function supportedFake(array $kinds = [['x402Version' => 2, 'scheme' => 'exact', 'network' => 'eip155:84532']]): void
 {

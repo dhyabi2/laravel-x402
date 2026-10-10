@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Pricing;
+namespace Requestway\X402\Pricing;
 
 use Closure;
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Http\Request;
+use Requestway\X402\Routing\RoutePayment;
 
 /**
  * Wraps the closure given to X402::priceUsing().

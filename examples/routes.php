@@ -16,10 +16,10 @@ declare(strict_types=1);
 */
 
 use App\Http\Controllers\ReportController;
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Routing\RoutePayment;
 
 /*
 | 1. The whole integration: a price, in USD.

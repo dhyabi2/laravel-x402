@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Events;
+namespace Requestway\X402\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 

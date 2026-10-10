@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Recording;
+namespace Requestway\X402\Recording;
 
-use HydraLabs\X402\Config\X402Config;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
-use HydraLabs\X402\Enums\PaymentStatus;
-use HydraLabs\X402\Events\PaymentContext;
-use HydraLabs\X402\Events\PaymentFailed;
-use HydraLabs\X402\Events\PaymentObserved;
-use HydraLabs\X402\Events\PaymentRequired;
-use HydraLabs\X402\Events\PaymentSettled;
-use HydraLabs\X402\Events\PaymentVerified;
-use HydraLabs\X402\Models\X402Payment;
-use HydraLabs\X402\Reporting\Reporter;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Events\Dispatcher;
 use Psr\Log\LoggerInterface;
+use Requestway\X402\Config\X402Config;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Enums\PaymentStatus;
+use Requestway\X402\Events\PaymentContext;
+use Requestway\X402\Events\PaymentFailed;
+use Requestway\X402\Events\PaymentObserved;
+use Requestway\X402\Events\PaymentRequired;
+use Requestway\X402\Events\PaymentSettled;
+use Requestway\X402\Events\PaymentVerified;
+use Requestway\X402\Models\X402Payment;
+use Requestway\X402\Reporting\Reporter;
 use Throwable;
 
 /**

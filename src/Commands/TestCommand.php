@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Commands;
+namespace Requestway\X402\Commands;
 
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Core\Protocol\Codec;
-use HydraLabs\X402\Core\Protocol\CodecRegistry;
-use HydraLabs\X402\Core\Support\Base64;
-use HydraLabs\X402\Core\Support\Json;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
-use HydraLabs\X402\X402Manager;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Core\Protocol\Codec;
+use Requestway\X402\Core\Protocol\CodecRegistry;
+use Requestway\X402\Core\Support\Base64;
+use Requestway\X402\Core\Support\Json;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
+use Requestway\X402\X402Manager;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 

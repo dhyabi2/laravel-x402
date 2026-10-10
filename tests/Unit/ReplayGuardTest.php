@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Replay\ReplayGuard;
-use HydraLabs\X402\Core\Replay\ReplayStore;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
-use HydraLabs\X402\Replay\CacheReplayStore;
 use Illuminate\Support\Facades\Cache;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Replay\ReplayGuard;
+use Requestway\X402\Core\Replay\ReplayStore;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
+use Requestway\X402\Replay\CacheReplayStore;
 
 function guardRequirements(): PaymentRequirements
 {

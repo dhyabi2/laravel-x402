@@ -18,7 +18,7 @@ The canonical specification lives at
 ## Getting set up
 
 ```bash
-git clone https://github.com/ryankny/laravel-x402
+git clone https://github.com/requestway/laravel-x402
 cd laravel-x402
 composer install
 vendor/bin/pest
@@ -48,7 +48,7 @@ supported Laravel version.
 - **An entry under `## [Unreleased]`** in `CHANGELOG.md`.
 - **No new dependencies** unless there is no reasonable alternative. In
   particular `src/Core` must keep zero Illuminate imports, so it can be split
-  out as `hydralabs/x402-php`. A test enforces this.
+  out as `requestway/x402-php`. A test enforces this.
 - **Comments that explain why, not what.** The codebase is deliberately light on
   comments; the ones that exist earn their place by recording a decision.
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Support\EvmAddress;
-use HydraLabs\X402\Core\Support\FrozenClock;
-use HydraLabs\X402\Core\Support\Json;
-use HydraLabs\X402\Core\Support\SystemClock;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Support\EvmAddress;
+use Requestway\X402\Core\Support\FrozenClock;
+use Requestway\X402\Core\Support\Json;
+use Requestway\X402\Core\Support\SystemClock;
 
 it('validates EVM addresses', function (string $address, bool $valid): void {
     expect(EvmAddress::isValid($address))->toBe($valid);
@@ -66,17 +66,17 @@ it('reads the system clock and a frozen one', function (): void {
 });
 
 it('rejects base64 whose length cannot be valid', function (): void {
-    expect(fn (): string => HydraLabs\X402\Core\Support\Base64::decode('YWJjZGU'.'A'.'====='))
+    expect(fn (): string => Requestway\X402\Core\Support\Base64::decode('YWJjZGU'.'A'.'====='))
         ->toThrow(MalformedPaymentException::class)
-        ->and(fn (): string => HydraLabs\X402\Core\Support\Base64::decode('A'))
+        ->and(fn (): string => Requestway\X402\Core\Support\Base64::decode('A'))
         ->toThrow(MalformedPaymentException::class);
 });
 
 it('rejects base64 that decodes to nothing', function (): void {
-    expect(fn (): string => HydraLabs\X402\Core\Support\Base64::decode('===='))
+    expect(fn (): string => Requestway\X402\Core\Support\Base64::decode('===='))
         ->toThrow(MalformedPaymentException::class);
 });
 
 it('encodes to standard padded base64', function (): void {
-    expect(HydraLabs\X402\Core\Support\Base64::encode('{"a":1}'))->toBe('eyJhIjoxfQ==');
+    expect(Requestway\X402\Core\Support\Base64::encode('{"a":1}'))->toBe('eyJhIjoxfQ==');
 });

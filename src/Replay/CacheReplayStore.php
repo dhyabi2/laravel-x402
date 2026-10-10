@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Replay;
+namespace Requestway\X402\Replay;
 
-use HydraLabs\X402\Core\Replay\ReplayStore;
 use Illuminate\Contracts\Cache\Repository;
+use Requestway\X402\Core\Replay\ReplayStore;
 
 /**
  * Replay claims backed by a Laravel cache store.

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Http;
+namespace Requestway\X402\Http;
 
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Protocol\Codec;
-use HydraLabs\X402\Events\PaymentContext;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Protocol\Codec;
+use Requestway\X402\Events\PaymentContext;
 
 /**
  * Everything needed to settle a payment, carried on the request so that

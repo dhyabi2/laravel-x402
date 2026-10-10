@@ -1,9 +1,9 @@
 # Laravel x402
 
-[![Tests](https://github.com/ryankny/laravel-x402/actions/workflows/tests.yml/badge.svg)](https://github.com/ryankny/laravel-x402/actions/workflows/tests.yml)
-[![Static analysis](https://github.com/ryankny/laravel-x402/actions/workflows/phpstan.yml/badge.svg)](https://github.com/ryankny/laravel-x402/actions/workflows/phpstan.yml)
-[![Latest version](https://img.shields.io/packagist/v/hydralabs/laravel-x402.svg)](https://packagist.org/packages/hydralabs/laravel-x402)
-[![License](https://img.shields.io/packagist/l/hydralabs/laravel-x402.svg)](LICENSE)
+[![Tests](https://github.com/requestway/laravel-x402/actions/workflows/tests.yml/badge.svg)](https://github.com/requestway/laravel-x402/actions/workflows/tests.yml)
+[![Static analysis](https://github.com/requestway/laravel-x402/actions/workflows/phpstan.yml/badge.svg)](https://github.com/requestway/laravel-x402/actions/workflows/phpstan.yml)
+[![Latest version](https://img.shields.io/packagist/v/requestway/laravel-x402.svg)](https://packagist.org/packages/requestway/laravel-x402)
+[![License](https://img.shields.io/packagist/l/requestway/laravel-x402.svg)](LICENSE)
 
 **Charge AI agents for your Laravel API in one line.** Add `->middleware('x402:0.01')` to a route and it starts returning
 HTTP 402 with machine-readable payment requirements. Any [x402](https://github.com/x402-foundation/x402) client — an agent
@@ -104,7 +104,7 @@ No blockchain node, no web3 extension, no `ext-bcmath`, no queue worker required
 ## 60-second quickstart
 
 ```bash
-composer require hydralabs/laravel-x402
+composer require requestway/laravel-x402
 php artisan x402:install   # publishes config, asks for your wallet, network and facilitator
 php artisan migrate        # optional: records every payment
 ```
@@ -180,7 +180,7 @@ Route::get('/report', ReportController::class)->middleware('x402:premium');
 **Dynamic pricing** with a closure — return `null` to fall back to the route's own price:
 
 ```php
-use HydraLabs\X402\Facades\X402;
+use Requestway\X402\Facades\X402;
 
 X402::priceUsing(function (Request $request, RoutePayment $route): ?string {
     return match (true) {
@@ -194,7 +194,7 @@ X402::priceUsing(function (Request $request, RoutePayment $route): ?string {
 **Dynamic pricing** with a resolver class, for anything worth testing on its own:
 
 ```php
-final class UsageBasedPrice implements HydraLabs\X402\Pricing\PriceResolver
+final class UsageBasedPrice implements Requestway\X402\Pricing\PriceResolver
 {
     public function resolve(Request $request, RoutePayment $route): string|int|float|null
     {
@@ -247,7 +247,7 @@ Route::get('/report', ReportController::class)->paid('0.01', [
 **Attribute** on a controller or action:
 
 ```php
-use HydraLabs\X402\Attributes\RequiresPayment;
+use Requestway\X402\Attributes\RequiresPayment;
 
 class ReportController
 {
@@ -269,7 +269,7 @@ attribute pass straight through:
 ```php
 // bootstrap/app.php
 ->withMiddleware(function (Middleware $middleware) {
-    $middleware->appendToGroup('api', HydraLabs\X402\Http\Middleware\HonorPaymentAttributes::class);
+    $middleware->appendToGroup('api', Requestway\X402\Http\Middleware\HonorPaymentAttributes::class);
 })
 ```
 
@@ -376,7 +376,7 @@ Some facilitators sign each request rather than taking a long-lived token — th
 `x402.facilitator.auth` at a class that builds the headers per call:
 
 ```php
-use HydraLabs\X402\Core\Facilitator\FacilitatorAuth;
+use Requestway\X402\Core\Facilitator\FacilitatorAuth;
 
 final class CdpAuth implements FacilitatorAuth
 {
@@ -414,8 +414,8 @@ then recorded as `pending` rather than `failed`, because the transaction may sti
 The `MakesX402Payments` trait builds payloads for your own paid routes, so a test can pay without a wallet or a chain.
 
 ```php
-use HydraLabs\X402\Facades\X402;
-use HydraLabs\X402\Testing\MakesX402Payments;
+use Requestway\X402\Facades\X402;
+use Requestway\X402\Testing\MakesX402Payments;
 
 uses(MakesX402Payments::class);
 
@@ -501,7 +501,7 @@ php artisan migrate
 ```
 
 ```php
-use HydraLabs\X402\Models\X402Payment;
+use Requestway\X402\Models\X402Payment;
 
 X402Payment::query()->settled()->forRoute('reports.show')->between($from, $to)->sum('amount_atomic');
 X402Payment::query()->failed()->latest()->take(20)->get();
@@ -669,7 +669,7 @@ fails one, and never sends anything if the key is unset. The `Reporter` contract
 own service instead:
 
 ```php
-app()->singleton(HydraLabs\X402\Reporting\Reporter::class, MyOwnReporter::class);
+app()->singleton(Requestway\X402\Reporting\Reporter::class, MyOwnReporter::class);
 ```
 
 ## FAQ
@@ -702,7 +702,7 @@ specification's canonical USDC addresses for Base, Ethereum, Arbitrum, Polygon, 
 and Arc (plus testnets), and you can add or override any of them in config.
 
 **Can I use it outside Laravel?** The protocol core under `src/Core` has no framework dependencies and will be split out
-as `hydralabs/x402-php` for WordPress and plain PHP.
+as `requestway/x402-php` for WordPress and plain PHP.
 
 **Is this official?** No. It is an independent, spec-faithful implementation; see [docs/SPEC_NOTES.md](docs/SPEC_NOTES.md)
 for exactly which version it implements and every place it makes a judgement call.

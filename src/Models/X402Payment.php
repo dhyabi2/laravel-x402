@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Models;
+namespace Requestway\X402\Models;
 
 use DateTimeInterface;
-use HydraLabs\X402\Core\Money\UsdConverter;
-use HydraLabs\X402\Enums\Mode;
-use HydraLabs\X402\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Requestway\X402\Core\Money\UsdConverter;
+use Requestway\X402\Enums\Mode;
+use Requestway\X402\Enums\PaymentStatus;
 
 /**
  * A recorded x402 payment attempt.

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Errors\ErrorCode;
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Messages\SupportedKind;
-use HydraLabs\X402\Core\Messages\SupportedResponse;
-use HydraLabs\X402\Core\Messages\VerifyResponse;
+use Requestway\X402\Core\Errors\ErrorCode;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Messages\SupportedKind;
+use Requestway\X402\Core\Messages\SupportedResponse;
+use Requestway\X402\Core\Messages\VerifyResponse;
 
 function requirements(array $overrides = []): PaymentRequirements
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Core\Support\Base64;
-use HydraLabs\X402\Core\Support\Json;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
-use HydraLabs\X402\Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Testing\TestResponse;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Core\Support\Base64;
+use Requestway\X402\Core\Support\Json;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
+use Requestway\X402\Tests\TestCase;
 
 uses(TestCase::class)->in('Feature', 'Unit');
 

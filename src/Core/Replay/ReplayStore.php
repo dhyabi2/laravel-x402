@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Replay;
+namespace Requestway\X402\Core\Replay;
 
 /**
  * Atomic single-use claims over payment fingerprints.

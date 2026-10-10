@@ -1,6 +1,6 @@
 # x402 Specification Notes
 
-Implementation notes for `hydralabs/laravel-x402`, taken from the canonical
+Implementation notes for `requestway/laravel-x402`, taken from the canonical
 specification repository rather than from blog posts or secondary docs.
 
 **Source of truth:** [`x402-foundation/x402`](https://github.com/x402-foundation/x402)

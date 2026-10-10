@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Core\Support;
+namespace Requestway\X402\Core\Support;
 
-use HydraLabs\X402\Core\Exceptions\MalformedPaymentException;
+use Requestway\X402\Core\Exceptions\MalformedPaymentException;
 
 /**
  * Base64 codec for x402 wire values.

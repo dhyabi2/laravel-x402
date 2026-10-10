@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Tests\Support;
+namespace Requestway\X402\Tests\Support;
 
-use HydraLabs\X402\Pricing\PriceResolver;
-use HydraLabs\X402\Routing\RoutePayment;
 use Illuminate\Http\Request;
+use Requestway\X402\Pricing\PriceResolver;
+use Requestway\X402\Routing\RoutePayment;
 
 final class FlatRatePriceResolver implements PriceResolver
 {

@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Commands;
+namespace Requestway\X402\Commands;
 
-use HydraLabs\X402\Core\Networks\Network;
-use HydraLabs\X402\Core\Support\EvmAddress;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
+
+use Requestway\X402\Core\Networks\Network;
+use Requestway\X402\Core\Support\EvmAddress;
 
 final class InstallCommand extends Command
 {

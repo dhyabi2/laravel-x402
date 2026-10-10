@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace HydraLabs\X402\Testing;
+namespace Requestway\X402\Testing;
 
-use HydraLabs\X402\Core\Messages\PaymentPayload;
-use HydraLabs\X402\Core\Messages\PaymentRequired;
-use HydraLabs\X402\Core\Messages\PaymentRequirements;
-use HydraLabs\X402\Core\Messages\ResourceInfo;
-use HydraLabs\X402\Core\Messages\SettleResponse;
-use HydraLabs\X402\Core\Protocol\V1Codec;
-use HydraLabs\X402\Core\Protocol\V2Codec;
-use HydraLabs\X402\Core\Protocol\Version;
-use HydraLabs\X402\Core\Support\Base64;
-use HydraLabs\X402\Core\Support\Json;
-use HydraLabs\X402\Core\Testing\PaymentPayloadFactory;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
+use Requestway\X402\Core\Messages\PaymentPayload;
+use Requestway\X402\Core\Messages\PaymentRequired;
+use Requestway\X402\Core\Messages\PaymentRequirements;
+use Requestway\X402\Core\Messages\ResourceInfo;
+use Requestway\X402\Core\Messages\SettleResponse;
+use Requestway\X402\Core\Protocol\V1Codec;
+use Requestway\X402\Core\Protocol\V2Codec;
+use Requestway\X402\Core\Protocol\Version;
+use Requestway\X402\Core\Support\Base64;
+use Requestway\X402\Core\Support\Json;
+use Requestway\X402\Core\Testing\PaymentPayloadFactory;
 
 /**
  * Builds payments for your own paid routes in tests, and decodes the headers
