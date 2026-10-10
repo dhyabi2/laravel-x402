@@ -1,0 +1,12 @@
+/build
+/vendor
+/.phpunit.cache
+/.phpunit.result.cache
+composer.lock
+composer.dev.json
+composer.dev.lock
+.phpstan.neon
+phpstan.neon
+phpunit.xml
+.idea
+.DS_Store

@@ -1,0 +1,12 @@
+parameters:
+    level: 8
+
+    # config/x402.php is plain data read through env(); Larastan's env rule
+    # only recognises an application's own config directory, not a package's.
+    paths:
+        - src
+        - database
+
+    tmpDir: build/phpstan
+
+    treatPhpDocTypesAsCertain: false

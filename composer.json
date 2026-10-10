@@ -1,0 +1,72 @@
+{
+    "name": "hydralabs/laravel-x402",
+    "description": "Charge AI agents and HTTP clients for your Laravel routes with the x402 payment protocol.",
+    "keywords": [
+        "x402",
+        "ai-agents",
+        "payments",
+        "stablecoin",
+        "usdc",
+        "laravel",
+        "monetization",
+        "mcp"
+    ],
+    "homepage": "https://github.com/ryankny/laravel-x402",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hydra Labs",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^11.0 || ^12.0 || ^13.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "larastan/larastan": "^2.9 || ^3.0",
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
+        "pestphp/pest": "^2.34 || ^3.0",
+        "pestphp/pest-plugin-laravel": "^2.3 || ^3.0",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.1 || ^2.0",
+        "phpstan/phpstan-phpunit": "^1.3 || ^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "HydraLabs\\X402\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HydraLabs\\X402\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage --min=90",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HydraLabs\\X402\\X402ServiceProvider"
+            ],
+            "aliases": {
+                "X402": "HydraLabs\\X402\\Facades\\X402"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
