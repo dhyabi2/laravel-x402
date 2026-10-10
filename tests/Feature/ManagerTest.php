@@ -30,8 +30,7 @@ it('exposes the package services', function (): void {
         ->and($x402->bypass())->toBeInstanceOf(HydraLabs\X402\Bypass\BypassEvaluator::class)
         ->and($x402->recorder())->toBeInstanceOf(HydraLabs\X402\Recording\PaymentRecorder::class)
         ->and($x402->replayGuard())->toBeInstanceOf(HydraLabs\X402\Core\Replay\ReplayGuard::class)
-        ->and($x402->reporter())->toBeInstanceOf(Reporter::class)
-        ->and($x402->container())->toBe(app());
+        ->and($x402->reporter())->toBeInstanceOf(Reporter::class);
 });
 
 it('resolves the HTTP facilitator by default', function (): void {

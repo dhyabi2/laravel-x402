@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace HydraLabs\X402\Core\Messages;
 
-use HydraLabs\X402\Core\Networks\Network;
 use HydraLabs\X402\Core\Protocol\Version;
 
 /**
@@ -83,14 +82,6 @@ final class SupportedResponse
             static fn (SupportedKind $kind): string => $kind->network,
             $this->kinds
         )));
-    }
-
-    /**
-     * @return list<string>
-     */
-    public function networkLabels(): array
-    {
-        return array_map(static fn (string $network): string => Network::label($network), $this->networks());
     }
 
     /**

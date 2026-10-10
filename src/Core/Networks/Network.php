@@ -134,15 +134,4 @@ final class Network
     {
         return self::namespace($network) === 'eip155';
     }
-
-    public static function chainId(string $network): ?int
-    {
-        if (! self::isEvm($network)) {
-            return null;
-        }
-
-        $reference = explode(':', $network, 2)[1] ?? '';
-
-        return ctype_digit($reference) ? (int) $reference : null;
-    }
 }

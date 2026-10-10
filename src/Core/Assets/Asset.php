@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HydraLabs\X402\Core\Assets;
 
 use HydraLabs\X402\Core\Exceptions\ConfigurationException;
+use HydraLabs\X402\Core\Networks\Network;
 use HydraLabs\X402\Core\Support\EvmAddress;
 
 /**
@@ -36,7 +37,7 @@ final class Asset
     {
         $address = self::requireString($definition, 'address', $network);
 
-        if (str_starts_with($network, 'eip155:') && ! EvmAddress::isValid($address)) {
+        if (Network::isEvm($network) && ! EvmAddress::isValid($address)) {
             throw new ConfigurationException(sprintf(
                 'Asset address "%s" for network %s is not a valid EVM address.',
                 $address,

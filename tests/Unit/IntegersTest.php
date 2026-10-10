@@ -42,17 +42,6 @@ it('increments across carries', function (string $value, string $expected): void
     ['999999999999999999999999999', '1000000000000000000000000000'],
 ]);
 
-it('multiplies by a small factor', function (): void {
-    expect(Integers::multiplyBySmall('0', 10))->toBe('0')
-        ->and(Integers::multiplyBySmall('123', 0))->toBe('0')
-        ->and(Integers::multiplyBySmall('99', 11))->toBe('1089')
-        ->and(Integers::multiplyBySmall('123456789012345678901234567890', 7))->toBe('864197523086419752308641975230');
-});
-
-it('refuses a negative multiplier', function (): void {
-    expect(fn (): string => Integers::multiplyBySmall('1', -1))->toThrow(InvalidAmountException::class);
-});
-
 it('detects zero', function (): void {
     expect(Integers::isZero('0'))->toBeTrue()
         ->and(Integers::isZero('0000'))->toBeTrue()

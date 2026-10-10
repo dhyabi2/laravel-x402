@@ -34,11 +34,9 @@ it('labels known networks and falls back to the identifier', function (): void {
         ->and(Network::label('eip155:999999'))->toBe('eip155:999999');
 });
 
-it('reads the namespace and chain id', function (): void {
+it('reads the namespace', function (): void {
     expect(Network::namespace('eip155:8453'))->toBe('eip155')
+        ->and(Network::namespace('solana:abc'))->toBe('solana')
         ->and(Network::isEvm('eip155:8453'))->toBeTrue()
-        ->and(Network::isEvm('solana:abc'))->toBeFalse()
-        ->and(Network::chainId('eip155:8453'))->toBe(8453)
-        ->and(Network::chainId('solana:abc'))->toBeNull()
-        ->and(Network::chainId('eip155:mainnet'))->toBeNull();
+        ->and(Network::isEvm('solana:abc'))->toBeFalse();
 });

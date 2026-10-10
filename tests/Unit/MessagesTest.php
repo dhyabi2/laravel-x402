@@ -239,15 +239,14 @@ it('matches facilitator support including namespace wildcards', function (): voi
         ->and($supported->networks())->toBe(['eip155:*', 'solana:abc']);
 });
 
-it('labels supported networks', function (): void {
+it('serializes a supported kind', function (): void {
     $supported = new SupportedResponse([new SupportedKind(2, 'exact', 'eip155:8453')]);
 
-    expect($supported->networkLabels())->toBe(['Base'])
-        ->and($supported->toArray()['kinds'][0])->toBe([
-            'x402Version' => 2,
-            'scheme' => 'exact',
-            'network' => 'eip155:8453',
-        ]);
+    expect($supported->toArray()['kinds'][0])->toBe([
+        'x402Version' => 2,
+        'scheme' => 'exact',
+        'network' => 'eip155:8453',
+    ]);
 });
 
 it('keeps scheme-specific extra on a supported kind', function (): void {

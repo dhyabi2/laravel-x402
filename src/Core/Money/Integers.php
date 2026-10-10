@@ -83,36 +83,4 @@ final class Integers
 
         return '1'.$digits;
     }
-
-    /**
-     * Multiply an unsigned integer string by a small non-negative multiplier.
-     */
-    public static function multiplyBySmall(string $value, int $multiplier): string
-    {
-        if ($multiplier < 0) {
-            throw new InvalidAmountException('Multiplier must not be negative.');
-        }
-
-        $digits = self::normalize($value);
-
-        if ($multiplier === 0 || $digits === '0') {
-            return '0';
-        }
-
-        $result = '';
-        $carry = 0;
-
-        for ($index = strlen($digits) - 1; $index >= 0; $index--) {
-            $product = ((int) $digits[$index]) * $multiplier + $carry;
-            $result = ((string) ($product % 10)).$result;
-            $carry = intdiv($product, 10);
-        }
-
-        while ($carry > 0) {
-            $result = ((string) ($carry % 10)).$result;
-            $carry = intdiv($carry, 10);
-        }
-
-        return self::normalize($result);
-    }
 }

@@ -89,11 +89,6 @@ class X402Manager
         return $this->container->make(Reporter::class);
     }
 
-    public function container(): Container
-    {
-        return $this->container;
-    }
-
     public function mode(): Mode
     {
         return $this->config->mode();
