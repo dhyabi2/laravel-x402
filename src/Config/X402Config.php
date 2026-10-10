@@ -262,6 +262,11 @@ final class X402Config
         return (bool) $this->get('database.record_observed', true);
     }
 
+    public function recordsMalformed(): bool
+    {
+        return (bool) $this->get('database.record_malformed', false);
+    }
+
     public function table(): string
     {
         $table = $this->get('database.table', 'x402_payments');

@@ -268,3 +268,24 @@ it('rejects a legacy payload that underpays, even without an accepted echo', fun
 
     expect($response->json('error'))->toBe(ErrorCode::ValueMismatch->message());
 });
+
+it('logs but does not store undecodable input, so noise cannot grow the table', function (): void {
+    $this->getJson('/premium', [V2Codec::PAYMENT_SIGNATURE => 'not base64 !!'])->assertStatus(400);
+
+    expect(X402Payment::query()->count())->toBe(0);
+});
+
+it('stores a decode failure when an operator is debugging a client', function (): void {
+    config()->set('x402.database.record_malformed', true);
+
+    $this->getJson('/premium', [V2Codec::PAYMENT_SIGNATURE => 'not base64 !!'])->assertStatus(400);
+
+    expect(X402Payment::query()->failed()->sole()->meta['stage'])->toBe('decode');
+});
+
+it('stores a real payment that was rejected, because that is worth seeing', function (): void {
+    $this->getJson('/premium', payment(requirementsFor(), amount: '1'))->assertStatus(402);
+
+    expect(X402Payment::query()->failed()->sole()->failure_reason)
+        ->toBe('invalid_exact_evm_payload_authorization_value_mismatch');
+});

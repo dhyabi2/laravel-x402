@@ -238,6 +238,13 @@ return [
         'connection' => env('X402_DATABASE_CONNECTION'),
         'table' => env('X402_TABLE', 'x402_payments'),
         'record_observed' => (bool) env('X402_RECORD_OBSERVED', true),
+
+        /*
+        | Payloads that could not be decoded at all are logged but not stored,
+        | so unauthenticated noise cannot grow the table. Turn this on if you
+        | are debugging a client that cannot form a valid payment.
+        */
+        'record_malformed' => (bool) env('X402_RECORD_MALFORMED', false),
     ],
 
     /*

@@ -66,7 +66,9 @@ final class RouteCatalog
     {
         $items = [];
 
-        foreach ($this->entries() as $entry) {
+        // Nothing is for sale while the package is off, so advertising prices
+        // would be a lie to the one audience this endpoint exists for.
+        foreach ($this->config->isEnabled() ? $this->entries() : [] as $entry) {
             if ($entry->payment === null || $entry->accepts === []) {
                 continue;
             }

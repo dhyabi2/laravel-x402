@@ -115,3 +115,17 @@ it('can be served from a different path', function (): void {
 
     $this->getJson('/api/x402-catalogue')->assertOk()->assertJsonPath('x402Version', 2);
 });
+
+it('advertises nothing while the package is switched off', function (): void {
+    config()->set('x402.mode', 'off');
+
+    $response = $this->getJson('/.well-known/x402');
+
+    $response->assertOk()->assertJsonCount(0, 'items')->assertJsonPath('pagination.total', 0);
+});
+
+it('still advertises prices in observe mode, where agents are expected to call', function (): void {
+    config()->set('x402.mode', 'observe');
+
+    $this->getJson('/.well-known/x402')->assertOk()->assertJsonCount(2, 'items');
+});

@@ -93,6 +93,12 @@ final class PaymentRecorder
         ]);
     }
 
+    /**
+     * Stage for a payload that could not even be decoded. Not a payment
+     * attempt, so it is not persisted by default: see failed().
+     */
+    public const STAGE_DECODE = 'decode';
+
     public function failed(
         PaymentContext $context,
         string $stage,
@@ -125,6 +131,15 @@ final class PaymentRecorder
             $this->logger->error('x402 settlement failed after the response was served.', $payload);
         } else {
             $this->logger->warning('x402 payment failed.', $payload);
+        }
+
+        // Undecodable input is not a payment attempt — anyone can send a
+        // malformed header — so it is logged but not written to the database,
+        // where it would let unauthenticated noise grow the table unbounded.
+        if ($stage === self::STAGE_DECODE && ! $this->config->recordsMalformed()) {
+            $this->report('payment.failed', $context, ['stage' => $stage, 'reason' => $reason]);
+
+            return;
         }
 
         $this->persist($context, PaymentStatus::Failed, [

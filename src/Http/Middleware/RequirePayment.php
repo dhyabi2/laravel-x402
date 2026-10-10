@@ -19,6 +19,7 @@ use HydraLabs\X402\Enums\SettlementMode;
 use HydraLabs\X402\Events\PaymentContext;
 use HydraLabs\X402\Http\DeferredSettlement;
 use HydraLabs\X402\Http\PaymentResponseFactory;
+use HydraLabs\X402\Recording\PaymentRecorder;
 use HydraLabs\X402\Routing\RouteOptionParser;
 use HydraLabs\X402\Routing\RoutePayment;
 use HydraLabs\X402\X402Manager;
@@ -444,7 +445,7 @@ class RequirePayment
     ): Response {
         $this->x402->recorder()->failed(
             $context,
-            'verify',
+            $failure->status === Response::HTTP_BAD_REQUEST ? PaymentRecorder::STAGE_DECODE : 'verify',
             $reason ?? $failure->reason(),
             $failure->message,
         );

@@ -350,7 +350,11 @@ X402Payment::query()
     ->map(fn ($rows) => $rows->count().' requests, $'.$rows->sum('amount_usd').' foregone');
 ```
 
-`X402_MODE=off` disables the package entirely; protected routes behave as if they were never protected.
+On a high-traffic endpoint, one row per request adds up: set `X402_RECORD_OBSERVED=false` to keep the events and the
+logs without the table, or sample in a `PaymentObserved` listener.
+
+`X402_MODE=off` disables the package entirely; protected routes behave as if they were never protected, and the
+discovery endpoint advertises nothing — there is no point telling an agent a price you are not charging.
 
 ## Facilitators
 
@@ -491,6 +495,10 @@ stored as strings because they routinely exceed a 64-bit integer.
 Recording never affects a payment: if the database is unavailable the write is reported to your exception handler and the
 payment still succeeds. Set `X402_DATABASE=false` to turn it off.
 
+Payloads that could not be decoded at all are logged but **not** stored, so unauthenticated noise cannot grow the table;
+real payment attempts that were rejected are stored, because those are worth seeing. Set `X402_RECORD_MALFORMED=true`
+while debugging a client that cannot form a valid payment.
+
 ## Discovery
 
 ```
@@ -622,6 +630,8 @@ Every setting is environment-driven. The defaults are safe.
 | `X402_REPLAY_TTL` | `86400` | how long a used payment is remembered |
 | `X402_DATABASE` | `true` | record payments |
 | `X402_TABLE` | `x402_payments` | table name |
+| `X402_RECORD_OBSERVED` | `true` | store observe-mode rows |
+| `X402_RECORD_MALFORMED` | `false` | store undecodable payloads |
 | `X402_DISCOVERY` | `true` | serve the discovery endpoint |
 | `X402_DISCOVERY_PATH` | `.well-known/x402` | where to serve it |
 | `X402_SERVICE_NAME` | `APP_NAME` | service name for agents and directories |
