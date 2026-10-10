@@ -19,7 +19,7 @@ use Requestway\X402\Tests\TestCase;
 
 function facilitatorRequirements(): PaymentRequirements
 {
-    return PaymentRequired::fromArray(fixture('payment_required'))->first();
+    return PaymentRequired::fromArray(goldenFixture('payment_required'))->first();
 }
 
 function callFacilitator(): Facilitator
@@ -54,13 +54,13 @@ it('posts the verify body the specification defines', function (): void {
 
 it('posts the settle body and reads the settlement response', function (): void {
     Http::fake([
-        TestCase::FACILITATOR.'/settle' => Http::response(fixture('settlement')),
+        TestCase::FACILITATOR.'/settle' => Http::response(goldenFixture('settlement')),
     ]);
 
     $settlement = callFacilitator()->settle(samplePayload(), facilitatorRequirements(), new ResourceInfo('https://api.test/x'));
 
     expect($settlement->success)->toBeTrue()
-        ->and($settlement->transaction)->toBe(fixture('settlement')['transaction'])
+        ->and($settlement->transaction)->toBe(goldenFixture('settlement')['transaction'])
         ->and($settlement->network)->toBe('eip155:84532');
 
     Http::assertSent(fn (Request $request): bool => $request->url() === TestCase::FACILITATOR.'/settle');
@@ -222,7 +222,7 @@ it('retries a settle when an operator explicitly opts in', function (): void {
             throw new ConnectionException('cURL error 7: Failed to connect');
         }
 
-        return Http::response(fixture('settlement'));
+        return Http::response(goldenFixture('settlement'));
     });
 
     expect(callFacilitator()->settle(samplePayload(), facilitatorRequirements(), new ResourceInfo('https://api.test/x'))->success)

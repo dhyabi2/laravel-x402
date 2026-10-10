@@ -49,7 +49,7 @@ it('matches the specification example byte for byte given the same inputs', func
         ->middleware('x402:0.01');
 
     $required = paymentRequired($this->getJson('/premium-data'));
-    $golden = fixture('payment_required');
+    $golden = goldenFixture('payment_required');
 
     expect($required->first()->toArray())->toBe($golden['accepts'][0]);
 });

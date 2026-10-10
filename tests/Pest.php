@@ -79,7 +79,7 @@ function payment(PaymentRequirements $requirements, ?ResourceInfo $resource = nu
  *
  * @return array<string, mixed>
  */
-function fixture(string $name): array
+function goldenFixture(string $name): array
 {
     return Json::decodeObject((string) file_get_contents(__DIR__.'/Fixtures/'.$name.'.json'));
 }

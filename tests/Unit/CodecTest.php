@@ -35,7 +35,7 @@ it('uses the header names the v1 HTTP transport defined', function (): void {
 });
 
 it('encodes the specification PaymentRequired example byte for byte', function (): void {
-    $golden = fixture('payment_required');
+    $golden = goldenFixture('payment_required');
 
     $encoded = (new V2Codec)->encodePaymentRequired(PaymentRequired::fromArray($golden));
 
@@ -43,7 +43,7 @@ it('encodes the specification PaymentRequired example byte for byte', function (
 });
 
 it('decodes the specification PaymentPayload example', function (): void {
-    $golden = fixture('payment_payload');
+    $golden = goldenFixture('payment_payload');
 
     $payload = (new V2Codec)->decodePaymentPayload(Base64::encode(Json::encode($golden)));
 
@@ -62,7 +62,7 @@ it('decodes the specification PaymentPayload example', function (): void {
 
 it('round-trips a payment payload through the wire format', function (): void {
     $codec = new V2Codec;
-    $golden = fixture('payment_payload');
+    $golden = goldenFixture('payment_payload');
     $encoded = Base64::encode(Json::encode($golden));
 
     $decoded = $codec->decodePaymentPayload($encoded);
@@ -72,7 +72,7 @@ it('round-trips a payment payload through the wire format', function (): void {
 
 it('round-trips a settlement response', function (): void {
     $codec = new V2Codec;
-    $golden = fixture('settlement');
+    $golden = goldenFixture('settlement');
 
     $settlement = SettleResponse::fromArray($golden);
     $encoded = $codec->encodeSettlement($settlement);
@@ -81,20 +81,20 @@ it('round-trips a settlement response', function (): void {
 });
 
 it('decodes a flat v1 payload with no accepted echo', function (): void {
-    $payload = (new V1Codec)->decodePaymentPayload(Base64::encode(Json::encode(fixture('payment_payload_v1'))));
+    $payload = (new V1Codec)->decodePaymentPayload(Base64::encode(Json::encode(goldenFixture('payment_payload_v1'))));
 
     expect($payload->x402Version)->toBe(1)
         ->and($payload->accepted)->toBeNull()
         ->and($payload->scheme())->toBe('exact')
         ->and($payload->network())->toBe('base-sepolia')
         ->and($payload->authorizedValue())->toBe('10000')
-        ->and($payload->toArray())->toBe(fixture('payment_payload_v1'));
+        ->and($payload->toArray())->toBe(goldenFixture('payment_payload_v1'));
 });
 
 it('builds the facilitator request body the spec defines', function (): void {
     $codec = new V2Codec;
-    $payload = $codec->decodePaymentPayload(Base64::encode(Json::encode(fixture('payment_payload'))));
-    $required = PaymentRequired::fromArray(fixture('payment_required'));
+    $payload = $codec->decodePaymentPayload(Base64::encode(Json::encode(goldenFixture('payment_payload'))));
+    $required = PaymentRequired::fromArray(goldenFixture('payment_required'));
     $requirements = $required->first();
 
     $body = $codec->facilitatorRequest($payload, $requirements, $required->resource);
@@ -106,13 +106,13 @@ it('builds the facilitator request body the spec defines', function (): void {
 
 it('builds the legacy facilitator request body with v1 field names', function (): void {
     $codec = new V1Codec;
-    $payload = $codec->decodePaymentPayload(Base64::encode(Json::encode(fixture('payment_payload_v1'))));
-    $required = PaymentRequired::fromArray(fixture('payment_required'));
+    $payload = $codec->decodePaymentPayload(Base64::encode(Json::encode(goldenFixture('payment_payload_v1'))));
+    $required = PaymentRequired::fromArray(goldenFixture('payment_required'));
 
     $body = $codec->facilitatorRequest($payload, $required->first(), $required->resource);
 
     expect($body['x402Version'])->toBe(1)
-        ->and($body['paymentPayload'])->toBe(fixture('payment_payload_v1'))
+        ->and($body['paymentPayload'])->toBe(goldenFixture('payment_payload_v1'))
         ->and($body['paymentRequirements'])->toMatchArray([
             'maxAmountRequired' => '10000',
             'resource' => 'https://api.example.com/premium-data',
@@ -124,7 +124,7 @@ it('builds the legacy facilitator request body with v1 field names', function ()
 });
 
 it('emits the v1 body shape for a legacy 402', function (): void {
-    $body = (new V1Codec)->paymentRequiredBody(PaymentRequired::fromArray(fixture('payment_required')));
+    $body = (new V1Codec)->paymentRequiredBody(PaymentRequired::fromArray(goldenFixture('payment_required')));
 
     expect($body['x402Version'])->toBe(1)
         ->and($body['error'])->toBe('PAYMENT-SIGNATURE header is required')
@@ -162,7 +162,7 @@ it('rejects a v1 payload missing scheme, network or payload', function (array $p
 ]);
 
 it('accepts unpadded and URL-safe base64 from lenient clients', function (): void {
-    $json = Json::encode(fixture('payment_payload'));
+    $json = Json::encode(goldenFixture('payment_payload'));
     $standard = Base64::encode($json);
 
     expect(Base64::decode(rtrim($standard, '=')))->toBe($json)

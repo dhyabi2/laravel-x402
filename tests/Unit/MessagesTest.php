@@ -154,7 +154,7 @@ it('replaces the resource url without touching anything else', function (): void
 });
 
 it('builds a PaymentRequired and replaces its error message', function (): void {
-    $required = PaymentRequired::fromArray(fixture('payment_required'));
+    $required = PaymentRequired::fromArray(goldenFixture('payment_required'));
 
     expect($required->error)->toBe('PAYMENT-SIGNATURE header is required')
         ->and($required->withError('Pay up')->error)->toBe('Pay up')

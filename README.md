@@ -95,7 +95,7 @@ checks signatures and asks a facilitator to broadcast the transfer the payer alr
 ## Requirements
 
 - PHP 8.2+
-- Laravel 11, 12 or newer
+- Laravel 12, 13 or newer
 - A wallet address to receive payments (any EVM address — you do not need a private key on the server)
 - A facilitator URL (free for testnets, no account needed)
 
