@@ -11,6 +11,11 @@ and support for an older version is kept for reading as long as clients send it.
 
 ## [Unreleased]
 
+### Changed
+
+- README documents the Requestway dashboard: what it shows, how to connect it, how reporting behaves and exactly
+  which fields are sent
+
 ## [0.1.0] - 2026-10-10
 
 Initial release. Implements x402 protocol version 2 and reads version 1.

@@ -18,6 +18,9 @@ Route::get('/market-data', MarketDataController::class)->middleware('x402:0.01')
 That is the whole integration. The package implements [x402 protocol v2](docs/SPEC_NOTES.md) and is the reference
 implementation for PHP.
 
+To see what agents pay you, connect the free [Requestway dashboard](#requestway-dashboard) with one environment
+variable: earnings per route, failed payments by reason, and demand on routes you only observe.
+
 ---
 
 ## Contents
@@ -39,7 +42,7 @@ implementation for PHP.
 - [Security](#security)
 - [Testnet to mainnet checklist](#testnet-to-mainnet-checklist)
 - [Configuration reference](#configuration-reference)
-- [Optional hosted dashboard](#optional-hosted-dashboard)
+- [Requestway dashboard](#requestway-dashboard)
 - [FAQ](#faq)
 
 ---
@@ -657,20 +660,115 @@ Every setting is environment-driven. The defaults are safe.
 | `X402_DISCOVERY_PATH` | `.well-known/x402` | where to serve it |
 | `X402_SERVICE_NAME` | `APP_NAME` | service name for agents and directories |
 | `X402_LOG_PAYER` | `false` | log full payer addresses |
-| `X402_PLATFORM_KEY` | — | enables optional reporting (see below) |
+| `X402_PLATFORM_KEY` | — | Requestway project key; enables reporting (see [below](#requestway-dashboard)) |
+| `X402_PLATFORM_URL` | `https://api.requestway.com/x402/events` | where reports are posted |
+| `X402_PLATFORM_QUEUE` | default queue | queue for the report job |
+| `X402_PLATFORM_QUEUE_CONNECTION` | default connection | queue connection for the report job |
+| `X402_PLATFORM_TIMEOUT` | `5` | seconds before a report POST gives up |
 
 Publish the fully commented config with `php artisan vendor:publish --tag=x402-config`.
 
-## Optional hosted dashboard
+## Requestway dashboard
 
-Off unless `X402_PLATFORM_KEY` is set. When enabled, payment and observe events are queued and posted in batches to a
-configurable URL, for a hosted dashboard of revenue, demand and failures (coming soon). It never blocks a request, never
-fails one, and never sends anything if the key is unset. The `Reporter` contract is public, so you can point it at your
-own service instead:
+[Requestway](https://requestway.com) is a free analytics dashboard for x402 APIs, from the authors of this package.
+It sits beside your payments, never in them: the package tells it the outcome of each paid request after your API has
+answered, and Requestway shows you what that adds up to.
+
+- **Earnings per route**: daily revenue and the endpoints that earn it, over 7, 30 or 90 days.
+- **Failed payments, grouped**: every failure by stage (`verify`, `settle`, …) and reason
+  (`insufficient_funds`, `invalid_exact_evm_payload_signature`, …), most frequent first.
+- **Demand you aren't charging for**: in [observe mode](#observe-mode), the requests that *would* have paid and what
+  they would have been worth.
+- **A request log**: thirty days of raw events with route, price, network and transaction.
+- **Mainnet and testnet kept apart**: Base Sepolia test payments never show up as earnings, and the dashboard
+  follows whichever network your app last reported from.
+- **Live and test keys**: staging traffic stays out of your real numbers.
+- **An endpoint tester**: Requestway calls your paid route like an agent would, reads the `402`, pays it with test USDC
+  on Base Sepolia, checks the `PAYMENT-RESPONSE` receipt and waits for this package's report to arrive. It only ever
+  pays on testnets; a mainnet-only route gets its `402` checked and nothing more.
+
+### Connect it
+
+1. Create a free project at [requestway.com](https://requestway.com/register) and copy its key.
+2. Add it to `.env`. Use the `rw_test_` key on staging and the `rw_live_` key in production:
+
+   ```env
+   X402_PLATFORM_KEY=rw_live_xxxxxxxxxxxxxxxx
+   ```
+
+3. Run a queue worker. Reports are sent from a queued job, never from inside the request:
+
+   ```bash
+   php artisan queue:work
+   ```
+
+4. Make a paid (or observed) request, or run the endpoint tester from your project. Events appear within seconds.
+
+That is all. Without a key, reporting is off and nothing is ever sent.
+
+### How it behaves
+
+- **Never in the way.** Events are buffered for the request and posted in one batch from a queued job after the
+  response. A dispatch failure is reported to your exception handler and dropped. Reporting cannot slow down, fail or
+  change a payment.
+- **Bounded.** At most 100 events are buffered per request; each POST times out after `X402_PLATFORM_TIMEOUT`
+  seconds.
+- **Everything is configurable**: `X402_PLATFORM_URL`, `X402_PLATFORM_QUEUE`, `X402_PLATFORM_QUEUE_CONNECTION` and
+  `X402_PLATFORM_TIMEOUT`, listed in the [configuration reference](#configuration-reference).
+
+### What is sent
+
+Each batch is a `POST` with `Authorization: Bearer <your key>` and a JSON body:
+
+```json
+{
+  "source": "laravel-x402",
+  "events": [
+    {
+      "type": "payment.settled",
+      "at": "2026-10-11T12:00:00+00:00",
+      "payment": {
+        "route": "GET /market-data",
+        "method": "GET",
+        "resource": "https://api.example.com/market-data",
+        "mode": "enforce",
+        "price_usd": "0.01",
+        "amount_atomic": "10000",
+        "asset": "USDC",
+        "network": "eip155:8453",
+        "pay_to": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C",
+        "request_id": "9d2f…",
+        "transaction": "0x1234…",
+        "pending": false
+      }
+    }
+  ]
+}
+```
+
+Event types are `payment.settled`, `payment.failed` (with `stage` and `reason`) and `payment.observed`. **The payer's
+address is never sent**, and Requestway discards query strings on arrival. Raw events are kept for 30 days; daily
+totals for the life of the project. See the [privacy policy](https://requestway.com/privacy) for the full list.
+
+### Your own backend instead
+
+The `Reporter` contract is public, so you can send the same events anywhere:
 
 ```php
 app()->singleton(Requestway\X402\Reporting\Reporter::class, MyOwnReporter::class);
 ```
+
+### Learn more
+
+- [Install guide](https://requestway.com/docs) for Laravel and Node, the endpoint tester and the ingest API
+- [What is x402?](https://requestway.com/x402): the protocol explained for developers
+- [Articles](https://requestway.com/articles): step-by-step guides, including
+  [adding x402 to a Laravel API](https://requestway.com/articles/add-x402-payments-to-laravel),
+  [testing on Base Sepolia](https://requestway.com/articles/test-x402-payments-base-sepolia),
+  [observe mode](https://requestway.com/articles/x402-observe-mode) and
+  [why x402 payments fail](https://requestway.com/articles/why-x402-payments-fail)
+- On Node? [`@requestway/reporter`](https://github.com/requestway/reporter) reports the same events from
+  `@x402/express`, `@x402/next` and `@x402/hono`
 
 ## FAQ
 
@@ -703,6 +801,9 @@ and Arc (plus testnets), and you can add or override any of them in config.
 
 **Can I use it outside Laravel?** The protocol core under `src/Core` has no framework dependencies and will be split out
 as `requestway/x402-php` for WordPress and plain PHP.
+
+**What is Requestway, and do I need it?** A free dashboard for x402 APIs from the authors of this package. It is
+entirely optional: without `X402_PLATFORM_KEY` the package never contacts it. See [Requestway dashboard](#requestway-dashboard).
 
 **Is this official?** No. It is an independent, spec-faithful implementation; see [docs/SPEC_NOTES.md](docs/SPEC_NOTES.md)
 for exactly which version it implements and every place it makes a judgement call.
